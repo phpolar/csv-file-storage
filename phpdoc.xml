@@ -12,7 +12,7 @@
     <version number="0.1.0">
         <api format="php">
             <source dsn="./src"></source>
-          <default-package-name>Phpolar</default-package-name>
+          <default-package-name>Phpolar\CsvFileStorage</default-package-name>
           <visibility>public</visibility>
         </api>
     </version>
