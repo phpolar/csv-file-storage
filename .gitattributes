@@ -1,0 +1,21 @@
+/acceptance-test-results.md export-ignore
+/CHANGELOG.md               export-ignore
+/composer.json              export-ignore
+/composer.lock              export-ignore
+/.cz.yaml                   export-ignore
+/examples                   export-ignore
+/.gitattributes             export-ignore
+/.github                    export-ignore
+/.gitignore                 export-ignore
+/.phan                      export-ignore
+/phpcs.xml                  export-ignore
+/phpdoc.xml                 export-ignore
+/phpunit.xml                export-ignore
+/phpunit-dev.xml            export-ignore
+/.pre-commit-config.yaml    export-ignore
+/README.md                  export-ignore
+/SECURITY.md                export-ignore
+/tests                      export-ignore
+/docs                       export-ignore
+
+*.php diff=php
