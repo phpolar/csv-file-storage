@@ -28,7 +28,7 @@ final class CsvFileStorage extends AbstractStorage
 
     public function __construct(string $filename)
     {
-        $stream = fopen($filename, "r+");
+        $stream = fopen($filename, "c+");
         if ($stream === false) {
             throw new RuntimeException("File or stream does not exist. Attempted to open $filename");
         }
