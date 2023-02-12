@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsvFileStorage;
 
+use Exception;
 use Phpolar\CsvFileStorage\Tests\Fakes\FakeValueObject;
 use Phpolar\Phpolar\Storage\Item;
 use Phpolar\Phpolar\Storage\ItemKey;
@@ -113,7 +114,10 @@ final class CsvFileStorageTest extends TestCase
     #[TestDox("Shall throw an exception if stream does not exist")]
     public function test8()
     {
+        $warningHandler = static fn () => true;
+        set_error_handler($warningHandler, E_WARNING);
         $this->expectException(RuntimeException::class);
         new CsvFileStorage("php://non-existing-stream-handle");
+        restore_error_handler();
     }
 }
