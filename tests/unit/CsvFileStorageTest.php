@@ -109,4 +109,11 @@ final class CsvFileStorageTest extends TestCase
         $sut->storeByKey($key0, $item0);
         $sut->load();
     }
+
+    #[TestDox("Shall throw an exception if stream does not exist")]
+    public function test8()
+    {
+        $this->expectException(RuntimeException::class);
+        new CsvFileStorage("php://non-existing-stream-handle");
+    }
 }
