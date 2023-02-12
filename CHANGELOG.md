@@ -1,3 +1,9 @@
+## 0.4.0 (2023-02-12)
+
+### Feat
+
+- **CsvFileStorage**: create file if it does not exist
+
 ## 0.3.0 (2023-02-12)
 
 ### Feat
