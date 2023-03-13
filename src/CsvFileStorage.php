@@ -187,7 +187,6 @@ final class CsvFileStorage extends AbstractStorage implements Countable
                     "bool" => (bool) $propValue,
                     "int" => (int) $propValue,
                     "float" => (float) $propValue,
-                    "null" => null,
                     default => $propValue,
                 },
                 $propType instanceof ReflectionUnionType => match (true) {
