@@ -1,3 +1,10 @@
+## 0.4.1 (2023-03-12)
+
+### Fix
+
+- remove null type declaration
+- add support for type conversion and store values by row number
+
 ## 0.4.0 (2023-02-12)
 
 ### Feat
