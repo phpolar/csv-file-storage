@@ -11,7 +11,7 @@ final class FakeValueObject
         public string $myInput = "what",
         public int $myInt = 0,
         public bool $myBool = false,
-        public null $myNull = null,
+        public ?string $myNull = null,
         public float $myFloat = 1e1,
     ) {
     }
