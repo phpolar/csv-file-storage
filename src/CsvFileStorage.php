@@ -7,140 +7,229 @@ namespace Phpolar\CsvFileStorage;
 use Phpolar\Phpolar\Storage\AbstractStorage;
 use Phpolar\Phpolar\Storage\Item;
 use Phpolar\Phpolar\Storage\ItemKey;
-use Phpolar\Phpolar\Storage\KeyNotFound;
-use RuntimeException;
+use Countable;
+use DateTime;
+use DateTimeImmutable;
+use DomainException;
+use ReflectionNamedType;
+use ReflectionObject;
+use ReflectionUnionType;
 
 /**
  * Allows for saving data to a CSV file.
  */
-final class CsvFileStorage extends AbstractStorage
+final class CsvFileStorage extends AbstractStorage implements Countable
 {
+    /**
+     * Where the data was be persisted to.
+     *
+     * @var resource $readStream
+     */
+    private $readStream;
+
     /**
      * Where the data will be persisted to.
      *
-     * @var resource $stream
+     * @var resource $writeStream
      */
-    private $stream;
+    private $writeStream;
 
-    private bool $containsObjects = false;
+    private int|false $fileSize = 0;
 
-    private string $typeClassName;
+    /**
+     * The first line of the CSV file.
+     *
+     * @var list<?string>
+     */
+    private array $firstLine;
 
-    public function __construct(string $filename)
+    private int $lineNo = -1;
+
+    private bool $closeWriteStream = true;
+
+    private const MEMORY_STREAM = "php://memory";
+
+    public function __construct(string $filename, private ?string $typeClassName = null)
     {
-        $stream = fopen($filename, "c+");
-        if ($stream === false) {
-            throw new RuntimeException("File or stream does not exist. Attempted to open $filename");
+        $readMode = $filename === self::MEMORY_STREAM ? "r" : "r+";
+        $writeMode = $filename === self::MEMORY_STREAM ? "a+" : "r+";
+        $readStream = fopen($filename, $readMode);
+        $writeStream = fopen($filename, $writeMode);
+        $this->closeWriteStream = $filename !== self::MEMORY_STREAM;
+        if ($writeStream === false) {
+            throw new FileNotExistsException($filename);
         }
-        $this->stream = $stream;
+        $fileInfo = fstat($writeStream);
+        if ($fileInfo !== false) {
+            $this->fileSize = $fileInfo["size"];
+        }
+        $this->writeStream = $writeStream;
+        if ($readStream !== false) {
+            $this->readStream = $readStream;
+        }
         parent::__construct();
+        rewind($this->readStream);
     }
 
     public function __destruct()
     {
-        fclose($this->stream);
+        if (is_resource($this->readStream) === true) {
+            fclose($this->readStream);
+        }
+        if ($this->closeWriteStream === true) {
+            fsync($this->writeStream);
+            fclose($this->writeStream);
+        }
     }
 
     public function commit(): void
     {
-        $data = $this->getAll();
-        if (count($data) > 0) {
-            $firstRecord = $data[0];
-            if (is_object($firstRecord) === true) {
-                $this->typeClassName = get_class($firstRecord);
-                $firstRecord = get_object_vars($firstRecord);
-                $this->containsObjects = true;
-            }
-            if (is_array($firstRecord) === true) {
-                $headers = array_keys($firstRecord);
-                fputcsv($this->stream, $headers);
-            }
-        }
-        foreach ($data as $record) {
-            if (is_object($record) === true) {
-                /**
-                 * @var array<string,bool|float|int|string|null> $objAsArray
-                 */
-                $objAsArray = array_filter(get_object_vars($record), is_scalar(...));
-                fputcsv($this->stream, $objAsArray);
-            }
-            if (is_scalar($record) === true) {
-                fputcsv($this->stream, [$record]);
-            }
-            if (is_array($record) === true) {
-                fputcsv($this->stream, $record);
+        foreach ($this->getAll() as $record) {
+            $this->typeClassName ??= is_object($record) === true ? get_class($record) : null;
+            switch (true) {
+                case is_object($record):
+                    fputcsv($this->writeStream, $this->convertObjVars($record));
+                    break;
+                case is_scalar($record):
+                    fputcsv($this->writeStream, [$record]);
+                    break;
+                case is_array($record):
+                    fputcsv($this->writeStream, $record);
+                    break;
+                default:
+                    throw new DomainException("Invalid value. Only objects, scalars, and arrays are allowed.");
             }
         }
-        rewind($this->stream);
+        rewind($this->writeStream);
     }
 
-    public function load(): void
+    /**
+     * @return array<int|string, string>
+     */
+    private function convertObjVars(object $record): array
     {
-        $firstLine = fgetcsv($this->stream);
-        if ($firstLine === false) {
-            $this->clear();
+        return array_map(
+            static fn (mixed $item) => match (true) {
+                $item instanceof DateTimeImmutable => $item->format(DATE_RSS),
+                is_scalar($item) => (string) $item,
+                default => "",
+            },
+            get_object_vars($record),
+        );
+    }
+
+    /**
+     * Get the count of items in storage
+     */
+    public function count(): int
+    {
+        return $this->getCount();
+    }
+
+    protected function load(): void
+    {
+        if ($this->fileSize === 0) {
             return;
         }
-        $headers = array_values(array_filter($firstLine));
-        while (($line = fgetcsv($this->stream)) !== false) {
-            $isScalar = count($line) === 1;
-            $hasNoHeaders = count($headers) === 0 && count($line) > 0;
-            $headers = $hasNoHeaders === true ? range(0, count($line) - 1) : $headers;
-            match (true) {
-                $isScalar => $this->storeScalarLine($line),
-                $hasNoHeaders && $this->containsObjects => throw new RuntimeException("Malformed csv file"),
-                $this->containsObjects => $this->storeObjLine($headers, $line),
-                default => $this->storeLine($headers, $line),
-            };
+        $this->setFirstLine();
+        if ($this->hasEmptyHeader() === true) {
+            throw new DomainException("Malformed CSV file");
         }
-        $hasOneLine = $this->getCount() === 0 && count($headers) !== 0;
-        if ($hasOneLine === true) {
-            $indexes = range(0, count($headers) - 1);
-            $this->storeLine($indexes, $headers);
+
+        if ($this->hasObjects() === false) {
+            $this->storeLine($this->firstLine);
         }
-        rewind($this->stream);
+        while (($line = fgetcsv($this->readStream)) !== false) {
+            $this->storeLine($line);
+        }
+        if (count($this) === 0) {
+            throw new DomainException("Malformed CSV file");
+        }
     }
 
-    /**
-     * @param list<?string> $line
-     */
-    private function storeScalarLine(array $line): void
+    private function hasEmptyHeader(): bool
     {
-        $item = new Item($line[0]);
-        $key = $this->getOrGenerateKey($item);
-        $this->storeByKey($key, $item);
+        return count(array_filter($this->firstLine)) === 0;
+    }
+
+    private function hasObjects(): bool
+    {
+        return $this->typeClassName !== null;
+    }
+
+    private function setFirstLine(): void
+    {
+        $line = fgetcsv($this->readStream);
+        if ($line !== false) {
+            $this->firstLine ??= $line;
+        }
     }
 
     /**
-     * @param array<int|string> $headers
+     * @param array<int,non-empty-string> $headers
      * @param list<?string> $line
      */
     private function storeObjLine(array $headers, array $line): void
     {
+        // @codeCoverageIgnoreStart
+        if ($this->typeClassName === null) {
+            return;
+        }
+        // @codeCoverageIgnoreEnd
         $className = $this->typeClassName;
         $obj = new $className();
+        $reflectionObj = new ReflectionObject($obj);
         foreach (array_combine($headers, $line) as $propName => $propValue) {
-            $obj->$propName = $propValue;
+            $reflectionProp = $reflectionObj->getProperty($propName);
+            $propType = $reflectionProp->getType();
+            $obj->$propName = match (true) {
+                $propType instanceof ReflectionNamedType => match (strtolower($propType->getName())) {
+                    "bool" => (bool) $propValue,
+                    "int" => (int) $propValue,
+                    "float" => (float) $propValue,
+                    "null" => null,
+                    default => $propValue,
+                },
+                $propType instanceof ReflectionUnionType => match (true) {
+                    $this->containsType("string", $propType->getTypes()) => (string) $propValue,
+                    $this->containsType("int", $propType->getTypes()) => (int) $propValue,
+                    $this->containsType("float", $propType->getTypes()) => (float) $propValue,
+                    $this->containsType("bool", $propType->getTypes()) => (bool) $propValue,
+                    $this->containsType(DateTimeImmutable::class, $propType->getTypes()) =>
+                        new DateTimeImmutable($propValue ?? "19700101 000000"),
+                    $this->containsType(DateTime::class, $propType->getTypes()) =>
+                        new DateTime($propValue ?? "19700101 000000"),
+                    default => throw new AmbiguousUnionTypeException(),
+                },
+                default => $propValue,
+            };
         }
         $item = new Item($obj);
-        $key = $this->getOrGenerateKey($item);
+        $key = new ItemKey(++$this->lineNo);
         $this->storeByKey($key, $item);
     }
 
     /**
-     * @param array<int|string> $headers
-     * @param list<?string> $line
+     * @param string $needle
+     * @param ReflectionNamedType[] $namedTypes
      */
-    private function storeLine(array $headers, array $line): void
+    private function containsType(string $needle, array $namedTypes): bool
     {
-        $item = new Item(array_combine($headers, $line));
-        $key = $this->getOrGenerateKey($item);
-        $this->storeByKey($key, $item);
+        $haystack = array_map(static fn (ReflectionNamedType $type) => $type->getName(), $namedTypes);
+        return in_array($needle, $haystack);
     }
 
-    private function getOrGenerateKey(Item $item): ItemKey
+    /**
+     * @param list<?string> $line
+     */
+    private function storeLine(array $line): void
     {
-        $maybeKey = $this->findKey($item);
-        return $maybeKey instanceof KeyNotFound ? new ItemKey(uniqid()) : $maybeKey;
+        if ($this->hasObjects() === true) {
+            $this->storeObjLine(array_filter($this->firstLine), $line);
+            return;
+        }
+        $item = new Item(array_combine(range(0, count($this->firstLine) - 1), $line));
+        $key = new ItemKey(++$this->lineNo);
+        $this->storeByKey($key, $item);
     }
 }

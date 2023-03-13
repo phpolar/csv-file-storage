@@ -60,7 +60,7 @@
 </h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/phpolar-csvfilestorage.html" class="-active">CsvFileStorage</a>
+                <a href="namespaces/phpolar-csvfilestorage.html" class="">CsvFileStorage</a>
 
             </li>
             </ul>
@@ -97,34 +97,114 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/phpolar.html">Phpolar</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/phpolar-csvfilestorage.html">CsvFileStorage</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -namespace">
-        <h2 class="phpdocumentor-content__title">CsvFileStorage</h2>
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    AmbiguousUnionTypeException
+
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\RuntimeException">RuntimeException</abbr>
+    </span>
+
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Phpolar.html">Phpolar</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Phpolar-CsvFileStorage.html">CsvFileStorage</a></li>
+                            </ul>
+        </div>
+
+
+    </h2>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="AmbiguousUnionTypeException.php"><a href="files/ambiguousuniontypeexception.html"><abbr title="AmbiguousUnionTypeException.php">AmbiguousUnionTypeException.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">12</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Represents when the type cannot be confidently selected from the specified union type</p>
 
 
 
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes, Traits and Enums
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsvFileStorage-AmbiguousUnionTypeException.html"><abbr title="\Phpolar\CsvFileStorage\AmbiguousUnionTypeException">AmbiguousUnionTypeException</abbr></a></dt>
-        <dd>Represents when the type cannot be confidently selected from the specified union type</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html"><abbr title="\Phpolar\CsvFileStorage\CsvFileStorage">CsvFileStorage</abbr></a></dt>
-        <dd>Allows for saving data to a CSV file.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Phpolar-CsvFileStorage-FileNotExistsException.html"><abbr title="\Phpolar\CsvFileStorage\FileNotExistsException">FileNotExistsException</abbr></a></dt>
-        <dd>Represents when a file should exist but does not.</dd>
-
-
-    </dl>
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        function loadExternalCodeSnippets(line) {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                pre.setAttribute('data-line', line)
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        var modals = document.querySelectorAll("[data-modal]");
+
+        modals.forEach(function (trigger) {
+            trigger.addEventListener("click", function (event) {
+                //event.preventDefault();
+                const modal = document.getElementById(trigger.dataset.modal);
+                modal.classList.add("phpdocumentor-modal__open");
+                loadExternalCodeSnippets(trigger.dataset.line)
+                const exits = modal.querySelectorAll("[data-exit-button]");
+                exits.forEach(function (exit) {
+                    exit.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        modal.classList.remove("phpdocumentor-modal__open");
+                    });
+                });
+            });
+        });
+    </script>
 
     </article>
                 <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
@@ -140,7 +220,7 @@
 </section>
             </div>
         </div>
-        <a href="namespaces/phpolar-csvfilestorage.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Phpolar-CsvFileStorage-AmbiguousUnionTypeException.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
