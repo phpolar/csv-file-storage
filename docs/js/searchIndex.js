@@ -1,6 +1,11 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException",
+            "name": "AmbiguousUnionTypeException",
+            "summary": "Represents\u0020when\u0020the\u0020type\u0020cannot\u0020be\u0020confidently\u0020selected\u0020from\u0020the\u0020specified\u0020union\u0020type",
+            "url": "classes/Phpolar-CsvFileStorage-AmbiguousUnionTypeException.html"
+        },                {
             "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage",
             "name": "CsvFileStorage",
             "summary": "Allows\u0020for\u0020saving\u0020data\u0020to\u0020a\u0020CSV\u0020file.",
@@ -21,10 +26,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_commit"
         },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage\u003A\u003Aload\u0028\u0029",
-            "name": "load",
+            "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage\u003A\u003Acount\u0028\u0029",
+            "name": "count",
+            "summary": "Get\u0020the\u0020count\u0020of\u0020items\u0020in\u0020storage",
+            "url": "classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_count"
+        },                {
+            "fqsen": "\\Phpolar\\CsvFileStorage\\FileNotExistsException",
+            "name": "FileNotExistsException",
+            "summary": "Represents\u0020when\u0020a\u0020file\u0020should\u0020exist\u0020but\u0020does\u0020not.",
+            "url": "classes/Phpolar-CsvFileStorage-FileNotExistsException.html"
+        },                {
+            "fqsen": "\\Phpolar\\CsvFileStorage\\FileNotExistsException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "",
-            "url": "classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_load"
+            "url": "classes/Phpolar-CsvFileStorage-FileNotExistsException.html#method___construct"
         },                {
             "fqsen": "\\",
             "name": "\\",

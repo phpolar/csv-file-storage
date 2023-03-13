@@ -31,7 +31,7 @@
     },
     "require": {
         "php": ">=8.1",
-        "phpolar/phpolar-storage": "^1.0"
+        "phpolar/phpolar-storage": "^1.2"
     },
     "license": "MIT",
     "scripts": {
@@ -63,12 +63,6 @@
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
         "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
         "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
-        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --configuration=phpunit.ci.xml --coverage-text --testsuite unit\"",
-        "xdebug:on": [
-            "TEMP_FILE=\"$(sed --follow-symlink -E 's/^;(zend_extension=xdebug)/\\1/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
-        ],
-        "xdebug:off": [
-            "TEMP_FILE=\"$(sed --follow-symlink -E 's/^(zend_extension=xdebug)/;\\1/' \"$(php-config --ini-dir)/20-xdebug.ini\")\"; echo \"$TEMP_FILE\" > \"$(php-config --ini-dir)/20-xdebug.ini\""
-        ]
+        "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --configuration=phpunit.ci.xml --coverage-text --testsuite unit\""
     }
 }
