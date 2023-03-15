@@ -49,10 +49,10 @@ final class CsvFileStorage extends AbstractStorage implements Countable
 
     private const MEMORY_STREAM = "php://memory";
 
-    public function __construct(string $filename, private ?string $typeClassName = null)
+    public function __construct(private string $filename, private ?string $typeClassName = null)
     {
-        $readMode = $filename === self::MEMORY_STREAM ? "r" : "r+";
-        $writeMode = $filename === self::MEMORY_STREAM ? "a+" : "r+";
+        $readMode = "r";
+        $writeMode = "a";
         $readStream = fopen($filename, $readMode);
         $writeStream = fopen($filename, $writeMode);
         $this->closeWriteStream = $filename !== self::MEMORY_STREAM;
@@ -84,11 +84,22 @@ final class CsvFileStorage extends AbstractStorage implements Countable
 
     public function commit(): void
     {
-        foreach ($this->getAll() as $record) {
-            $this->typeClassName ??= is_object($record) === true ? get_class($record) : null;
+        if ($this->fileSize > 0) {
+            fclose($this->writeStream);
+            $file = fopen($this->filename, "w");
+            // @codeCoverageIgnoreStart
+            if ($file !== false) {
+                $this->writeStream = $file;
+            }
+            // @codeCoverageIgnoreEnd
+        }
+        foreach ($this->getAll() as $index => $record) {
             switch (true) {
                 case is_object($record):
-                    fputcsv($this->writeStream, $this->convertObjVars($record));
+                    $objVars = get_object_vars($record);
+                    $this->setUpObject($index, $record, $objVars);
+                    $convertedVars = $this->convertObjVars($objVars);
+                    fputcsv($this->writeStream, $convertedVars);
                     break;
                 case is_scalar($record):
                     fputcsv($this->writeStream, [$record]);
@@ -104,17 +115,18 @@ final class CsvFileStorage extends AbstractStorage implements Countable
     }
 
     /**
-     * @return array<int|string, string>
+     * @param array<string,mixed> $objVars
+     * @return array<string,string>
      */
-    private function convertObjVars(object $record): array
+    private function convertObjVars(array $objVars): array
     {
         return array_map(
             static fn (mixed $item) => match (true) {
-                $item instanceof DateTimeImmutable => $item->format(DATE_RSS),
+                $item instanceof DateTimeImmutable => $item->format(DATE_RFC3339),
                 is_scalar($item) => (string) $item,
                 default => "",
             },
-            get_object_vars($record),
+            $objVars,
         );
     }
 
@@ -135,7 +147,6 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         if ($this->hasEmptyHeader() === true) {
             throw new DomainException("Malformed CSV file");
         }
-
         if ($this->hasObjects() === false) {
             $this->storeLine($this->firstLine);
         }
@@ -162,6 +173,17 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         $line = fgetcsv($this->readStream);
         if ($line !== false) {
             $this->firstLine ??= $line;
+        }
+    }
+
+    /**
+     * @param array<string,mixed> $objVars
+     */
+    private function setUpObject(int|string $index, object $record, array $objVars): void
+    {
+        if ($index === 0) {
+            $this->typeClassName = get_class($record);
+            fputcsv($this->writeStream, array_keys($objVars));
         }
     }
 
