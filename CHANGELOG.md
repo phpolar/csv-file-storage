@@ -1,3 +1,9 @@
+## 0.4.3 (2023-03-25)
+
+### Fix
+
+- **CsvFileStorage**: create file on init
+
 ## 0.4.2 (2023-03-15)
 
 ### Fix
