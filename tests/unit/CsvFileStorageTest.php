@@ -12,7 +12,6 @@ use Phpolar\Phpolar\Storage\Item;
 use Phpolar\Phpolar\Storage\ItemKey;
 use Phpolar\Phpolar\Storage\ItemNotFound;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
@@ -23,16 +22,27 @@ final class CsvFileStorageTest extends TestCase
 {
     protected $stream = "php://memory";
 
-    protected string $filename;
+    /**
+     * @var string[]
+     */
+    protected static array $filenames;
 
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->filename = tempnam(sys_get_temp_dir(), uniqid());
+        for ($i = 1; $i <= 2; ++$i) {
+            self::$filenames[] = sys_get_temp_dir() . DIRECTORY_SEPARATOR .  uniqid();
+        }
     }
 
-    protected function tearDown(): void
+    public static function tearDownAfterClass(): void
     {
-        file_exists($this->filename) && unlink($this->filename);
+        array_walk(
+            self::$filenames,
+            static function (string $filename): void {
+                file_exists($filename) && unlink($filename);
+            },
+        );
+        unset(self::$filenames);
     }
 
     #[TestDox("Shall save objects to file")]
@@ -68,7 +78,7 @@ final class CsvFileStorageTest extends TestCase
     {
         $warningHandler = static fn () => true;
         set_error_handler($warningHandler, E_WARNING);
-        $sut = new CsvFileStorage($this->filename);
+        $sut = new CsvFileStorage(self::$filenames[0]);
         $givenValue = 2 ** 44;
         $expected = $givenValue;
         $item0 = new Item($givenValue);
@@ -76,11 +86,12 @@ final class CsvFileStorageTest extends TestCase
         $sut->storeByKey($key0, $item0);
         $sut->commit();
         unset($sut);
-        $sut2 = new CsvFileStorage($this->filename);
+        $sut2 = new CsvFileStorage(self::$filenames[0]);
         $stored = $sut2->getByKey($key0)->bind();
         $this->assertCount(1, $stored);
         $this->assertEquals($expected, $stored[0]);
         restore_error_handler();
+        unset($sut);
     }
 
     #[TestDox("Shall be empty if no data is on file")]
@@ -162,7 +173,6 @@ final class CsvFileStorageTest extends TestCase
     }
 
     #[TestDox("Shall throw an exception when the union type is ambiguous")]
-    #[Group("me")]
     public function testf()
     {
         $this->expectException(AmbiguousUnionTypeException::class);
@@ -180,5 +190,14 @@ final class CsvFileStorageTest extends TestCase
         $item = new Item($invalid);
         $sut->storeByKey($key, $item);
         $sut->commit();
+    }
+
+    #[TestDox("Shall create file on init if it does not exist")]
+    public function testh()
+    {
+        $filename = self::$filenames[1];
+        $this->assertFileDoesNotExist($filename);
+        new CsvFileStorage($filename);
+        $this->assertFileExists($filename);
     }
 }
