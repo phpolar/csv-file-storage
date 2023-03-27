@@ -10,6 +10,7 @@ use Phpolar\Phpolar\Storage\ItemKey;
 use Countable;
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DomainException;
 use ReflectionNamedType;
 use ReflectionObject;
@@ -244,10 +245,12 @@ final class CsvFileStorage extends AbstractStorage implements Countable
             $reflectionProp = $reflectionObj->getProperty($propName);
             $propType = $reflectionProp->getType();
             $obj->$propName = match (true) {
-                $propType instanceof ReflectionNamedType => match (strtolower($propType->getName())) {
+                $propType instanceof ReflectionNamedType => match ($propType->getName()) {
                     "bool" => (bool) $propValue,
                     "int" => (int) $propValue,
                     "float" => (float) $propValue,
+                    DateTimeImmutable::class => new DateTimeImmutable($propValue ?? "now"), // @codeCoverageIgnore
+                    DateTime::class => new DateTime($propValue ?? "now"), // @codeCoverageIgnore
                     default => $propValue,
                 },
                 $propType instanceof ReflectionUnionType => match (true) {
