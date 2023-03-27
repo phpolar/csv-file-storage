@@ -1,3 +1,9 @@
+## 0.6.0 (2023-03-26)
+
+### Feat
+
+- **CsvFileStorage**: create date time objects from date values
+
 ## 0.5.0 (2023-03-26)
 
 ### Feat
