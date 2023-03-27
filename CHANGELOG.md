@@ -1,3 +1,9 @@
+## 0.5.0 (2023-03-26)
+
+### Feat
+
+- load objects with primary key
+
 ## 0.4.3 (2023-03-25)
 
 ### Fix
