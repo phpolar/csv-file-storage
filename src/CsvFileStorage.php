@@ -265,7 +265,8 @@ final class CsvFileStorage extends AbstractStorage implements Countable
             };
         }
         $item = new Item($obj);
-        $key = new ItemKey(++$this->lineNo);
+        $keyVal = method_exists($obj, "getPrimaryKey") === true ? $obj->getPrimaryKey() : ++$this->lineNo;
+        $key = new ItemKey($keyVal);
         $this->storeByKey($key, $item);
     }
 
