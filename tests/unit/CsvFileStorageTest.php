@@ -6,12 +6,14 @@ namespace Phpolar\CsvFileStorage;
 
 use DomainException;
 use Phpolar\CsvFileStorage\Tests\Fakes\FakeValueObject;
+use Phpolar\CsvFileStorage\Tests\Fakes\FakeValueObjectWithPrimaryKey;
 use Phpolar\CsvFileStorage\Tests\Fakes\FakeValueObjectWithUnions;
 use Phpolar\CsvFileStorage\Tests\Fakes\FakeValueObjectWithUnionsError;
 use Phpolar\Phpolar\Storage\Item;
 use Phpolar\Phpolar\Storage\ItemKey;
 use Phpolar\Phpolar\Storage\ItemNotFound;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
@@ -46,13 +48,29 @@ final class CsvFileStorageTest extends TestCase
     }
 
     #[TestDox("Shall save objects to file")]
-    public function test1()
+    public function test1a()
     {
-        $sut = new CsvFileStorage($this->stream);
+        $sut = new CsvFileStorage($this->stream, FakeValueObject::class);
         $givenObject = new FakeValueObject();
         $expected = $givenObject;
         $item0 = new Item($givenObject);
         $key0 = new ItemKey(0);
+        $sut->storeByKey($key0, $item0);
+        $sut->commit();
+        $stored = $sut->getByKey($key0);
+        $this->assertObjectEquals($expected, $stored->bind());
+    }
+
+    #[TestDox("Shall save objects with primary key to file")]
+    #[Group("me")]
+    public function test1b()
+    {
+        $givenPrimaryKey = uniqid();
+        $sut = new CsvFileStorage($this->stream, FakeValueObjectWithPrimaryKey::class);
+        $givenObject = (new FakeValueObjectWithPrimaryKey())->withPrimaryKey($givenPrimaryKey);
+        $expected = $givenObject;
+        $item0 = new Item($givenObject);
+        $key0 = new ItemKey($givenPrimaryKey);
         $sut->storeByKey($key0, $item0);
         $sut->commit();
         $stored = $sut->getByKey($key0);
@@ -136,10 +154,21 @@ final class CsvFileStorageTest extends TestCase
     }
 
     #[TestDox("Shall load objects from file")]
-    public function testa()
+    public function testaa()
     {
         $sut = new CsvFileStorage("tests/__fakes__/object.csv", FakeValueObject::class);
         $itemKey = new ItemKey(0);
+        $item = $sut->getByKey($itemKey);
+        $this->assertNotInstanceOf(ItemNotFound::class, $item);
+    }
+
+    #[TestDox("Shall load objects with primary key from file")]
+    #[Group("me")]
+    public function testab()
+    {
+        $sut = new CsvFileStorage("tests/__fakes__/object-with-pkey.csv", FakeValueObjectWithPrimaryKey::class);
+        $primaryKey = "123";
+        $itemKey = new ItemKey($primaryKey);
         $item = $sut->getByKey($itemKey);
         $this->assertNotInstanceOf(ItemNotFound::class, $item);
     }
