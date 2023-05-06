@@ -10,7 +10,6 @@ use Phpolar\Phpolar\Storage\ItemKey;
 use Countable;
 use DateTime;
 use DateTimeImmutable;
-use DateTimeInterface;
 use DomainException;
 use ReflectionNamedType;
 use ReflectionObject;
