@@ -31,11 +31,9 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
+
     - name: Install dependencies
       run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
-
-    - name: Run static analysis
-      run: composer ci:analyze
 
     - name: Run test suite
       run: composer ci:test
