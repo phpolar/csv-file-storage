@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2174557483b5a8c2d288aceb57f9f100",
+    "content-hash": "d851c398c5873de3707e418cba01d68e",
     "packages": [
         {
-            "name": "phpolar/phpolar-storage",
-            "version": "1.2.2",
+            "name": "phpolar/storage",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpolar/phpolar-storage.git",
-                "reference": "a8153f72960a0612a51e9b68311beafc4ca3231d"
+                "url": "https://github.com/phpolar/storage.git",
+                "reference": "d0228659574396f9bd2e3a257f17e000c4a67ef3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/phpolar-storage/zipball/a8153f72960a0612a51e9b68311beafc4ca3231d",
-                "reference": "a8153f72960a0612a51e9b68311beafc4ca3231d",
+                "url": "https://api.github.com/repos/phpolar/storage/zipball/d0228659574396f9bd2e3a257f17e000c4a67ef3",
+                "reference": "d0228659574396f9bd2e3a257f17e000c4a67ef3",
                 "shasum": ""
             },
             "require": {
@@ -45,10 +45,10 @@
             ],
             "description": "A convenient tool to speed up the creation of data storage for application development.",
             "support": {
-                "issues": "https://github.com/phpolar/phpolar-storage/issues",
-                "source": "https://github.com/phpolar/phpolar-storage/tree/1.2.2"
+                "issues": "https://github.com/phpolar/storage/issues",
+                "source": "https://github.com/phpolar/storage/tree/2.0.0"
             },
-            "time": "2023-05-06T02:59:56+00:00"
+            "time": "2023-07-04T01:25:06+00:00"
         }
     ],
     "packages-dev": [
