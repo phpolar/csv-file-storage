@@ -1,3 +1,9 @@
+## 0.6.1 (2023-07-03)
+
+### Refactor
+
+- upgrade dependencies
+
 ## 0.6.0 (2023-03-26)
 
 ### Feat
