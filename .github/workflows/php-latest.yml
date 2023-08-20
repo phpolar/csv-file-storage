@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP Build Latest and Nightly
 
 on:
   schedule:
@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
     strategy:
       matrix:
         operating-system: ['ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest']
@@ -31,7 +32,6 @@ jobs:
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
-
     - name: Install dependencies
       run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
 
