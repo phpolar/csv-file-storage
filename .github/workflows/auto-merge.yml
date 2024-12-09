@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   unit_tests:
+    runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'dependabot[bot]' || github.actor == 'dependabot[bot]'
     steps:
       - name: Run test suite
