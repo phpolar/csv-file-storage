@@ -11,8 +11,9 @@ permissions:
 jobs:
   unit_tests:
     if: github.event.pull_request.user.login == 'dependabot[bot]' || github.actor == 'dependabot[bot]'
-    name: Run test suite
-    run: composer ci:test
+    steps:
+      - name: Run test suite
+        run: composer ci:test
 
   dependabot:
     needs: unit_tests
