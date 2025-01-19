@@ -1,6 +1,11 @@
 name: Pull Request Quality Check
 
 on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'composer.json'
+      - 'src/**.php'
   pull_request:
     branches: [ main ]
     paths:
