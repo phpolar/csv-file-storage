@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="240" src="./phpolar.svg" />
+    <img width="240" src="./phpolar.svg" alt="PHPolar logo" />
 </p>
 
 # PHPolar CSV File Storage
