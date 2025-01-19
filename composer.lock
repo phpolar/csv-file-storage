@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "edd794ca86ecba91e5112ff73306ee5d",
+    "content-hash": "a7705c61aaa36d29f2b8c2666520373d",
     "packages": [
         {
             "name": "phpolar/storage",
