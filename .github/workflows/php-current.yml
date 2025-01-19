@@ -1,4 +1,4 @@
-name: PHP Build Latest and Nightly
+name: PHP Current Stable Build
 
 on:
   schedule:
@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-        php-versions: [nightly]
+        php-versions: [latest]
         phpunit-versions: ['latest']
     steps:
     - uses: actions/checkout@v4
