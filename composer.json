@@ -1,5 +1,4 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
     "name": "phpolar/csv-file-storage",
     "description": "Adds support for storing data on disk in CSV format.",
     "type": "library",
@@ -10,7 +9,7 @@
         "php-coveralls/php-coveralls": "^2.5",
         "phpmd/phpmd": "^2.13",
         "phpstan/phpstan": "^1.9 || ^2.0",
-        "phpunit/phpunit": "10.4.2",
+        "phpunit/phpunit": "^11.4",
         "squizlabs/php_codesniffer": "^3.7"
     },
     "config": {
@@ -30,8 +29,8 @@
         }
     },
     "require": {
-        "php": ">=8.1",
-        "phpolar/storage": "^2.0"
+        "php": ">= 8.2",
+        "phpolar/storage": "^3.0"
     },
     "license": "MIT",
     "scripts": {
