@@ -34,7 +34,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
      */
     private $writeStream;
 
-    private int|false $fileSize = 0;
+    private int $fileSize = 0;
 
     /**
      * The first line of the CSV file.
@@ -107,7 +107,14 @@ final class CsvFileStorage extends AbstractStorage implements Countable
                     fputcsv($this->writeStream, [$record]);
                     break;
                 case is_array($record):
-                    fputcsv($this->writeStream, $record);
+                    /**
+                     * @var array<int|string, bool|float|int|string|null>
+                     */
+                    $arr = $record;
+                    fputcsv(
+                        $this->writeStream,
+                        $arr,
+                    );
                     break;
                 default:
                     throw new DomainException(self::INVALID_VALUE_MSG);
@@ -137,7 +144,8 @@ final class CsvFileStorage extends AbstractStorage implements Countable
      */
     public function count(): int
     {
-        return $this->getCount();
+        $result = $this->getCount();
+        return max($result, 0);
     }
 
     protected function load(): void
@@ -162,11 +170,12 @@ final class CsvFileStorage extends AbstractStorage implements Countable
 
     /**
      * @param string $needle
-     * @param ReflectionNamedType[] $namedTypes
+     * @param ReflectionNamedType[]|\ReflectionIntersectionType[] $types
      */
-    private function containsType(string $needle, array $namedTypes): bool
+    private function containsType(string $needle, array $types): bool
     {
-        $haystack = array_map(static fn (ReflectionNamedType $type) => $type->getName(), $namedTypes);
+        /**  @phan-suppress-next-line PhanPartialTypeMismatchArgument */
+        $haystack = array_map(static fn (ReflectionNamedType $type) => $type->getName(), array_filter($types, static fn ($type) => $type instanceof ReflectionNamedType));
         return in_array($needle, $haystack);
     }
 

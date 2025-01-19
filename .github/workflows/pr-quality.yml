@@ -17,7 +17,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: 8.1
+        php-version: 8.2
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -31,7 +31,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
     - name: Install dependencies
-      run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast && composer dumpautoload
+      run: composer install --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast && composer dumpautoload
 
     - name: Scanning for lint errors
       run: composer ci:lint
