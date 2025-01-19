@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fda532158d89dc655e12e8bf1f5a7a75",
+    "content-hash": "5b8cce4a8ca0186175669f858a1d8301",
     "packages": [
         {
             "name": "phpolar/storage",
-            "version": "2.0.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpolar/storage.git",
-                "reference": "0c72e6ec91d7be7fd3f60adc1064949c54567c4c"
+                "reference": "eb2716c49a938b952d2787ca397dd643962491bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/storage/zipball/0c72e6ec91d7be7fd3f60adc1064949c54567c4c",
-                "reference": "0c72e6ec91d7be7fd3f60adc1064949c54567c4c",
+                "url": "https://api.github.com/repos/phpolar/storage/zipball/eb2716c49a938b952d2787ca397dd643962491bd",
+                "reference": "eb2716c49a938b952d2787ca397dd643962491bd",
                 "shasum": ""
             },
             "require": {
@@ -27,11 +27,11 @@
                 "ext-ast": "*",
                 "ext-openssl": "*",
                 "phan/phan": "^5.4",
-                "php-coveralls/php-coveralls": "^2.5",
-                "phpmd/phpmd": "^2.13",
+                "php-coveralls/php-coveralls": "^2.7.0",
+                "phpmd/phpmd": "^2.15.0",
                 "phpstan/phpstan": "^1.9",
-                "phpunit/phpunit": "^10.0",
-                "squizlabs/php_codesniffer": "^3.7"
+                "phpunit/phpunit": "^11.4.4",
+                "squizlabs/php_codesniffer": "^3.11.1"
             },
             "type": "library",
             "autoload": {
@@ -46,9 +46,9 @@
             "description": "A convenient tool to speed up the creation of data storage for application development.",
             "support": {
                 "issues": "https://github.com/phpolar/storage/issues",
-                "source": "https://github.com/phpolar/storage/tree/2.0.0"
+                "source": "https://github.com/phpolar/storage/tree/3.0.0"
             },
-            "time": "2023-09-02T23:34:51+00:00"
+            "time": "2025-01-19T01:50:21+00:00"
         }
     ],
     "packages-dev": [

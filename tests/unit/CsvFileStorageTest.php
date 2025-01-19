@@ -13,8 +13,8 @@ use Phpolar\Phpolar\Storage\Item;
 use Phpolar\Phpolar\Storage\ItemKey;
 use Phpolar\Phpolar\Storage\ItemNotFound;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\WithoutErrorHandler;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(CsvFileStorage::class)]
@@ -44,7 +44,7 @@ final class CsvFileStorageTest extends TestCase
                 file_exists($filename) && unlink($filename);
             },
         );
-        unset(self::$filenames);
+        self::$filenames = [];
     }
 
     #[TestDox("Shall save objects to file")]
@@ -62,7 +62,6 @@ final class CsvFileStorageTest extends TestCase
     }
 
     #[TestDox("Shall save objects with primary key to file")]
-    #[Group("me")]
     public function test1b()
     {
         $givenPrimaryKey = uniqid();
@@ -124,7 +123,7 @@ final class CsvFileStorageTest extends TestCase
     #[TestDox("Shall not clear the internal data if data is on file, no headers exist, and load is called")]
     public function test5()
     {
-        $sut = new CsvFileStorage("tests/__fakes__/without-headers.csv");
+        $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/without-headers.csv");
         $fromFile = $sut->getAll();
         $this->assertNotEmpty($fromFile);
     }
@@ -133,40 +132,37 @@ final class CsvFileStorageTest extends TestCase
     public function test6()
     {
         $this->expectException(DomainException::class);
-        new CsvFileStorage("tests/__fakes__/empty-headers.csv");
+        new CsvFileStorage(__DIR__ . "/../__fakes__/empty-headers.csv");
     }
 
     #[TestDox("Shall throw an exception if storage contains object types but file has no headers")]
     public function test7()
     {
         $this->expectException(DomainException::class);
-        new CsvFileStorage("tests/__fakes__/empty-headers.csv", FakeValueObject::class);
+        new CsvFileStorage(__DIR__ . "/../__fakes__/empty-headers.csv", FakeValueObject::class);
     }
 
     #[TestDox("Shall throw an exception if stream does not exist")]
+    #[WithoutErrorHandler]
     public function test8()
     {
-        $warningHandler = static fn () => true;
-        set_error_handler($warningHandler, E_WARNING);
         $this->expectException(FileNotExistsException::class);
-        new CsvFileStorage("php://non-existing-stream-handle");
-        restore_error_handler();
+        @new CsvFileStorage("php://non-existing-stream-handle");
     }
 
     #[TestDox("Shall load objects from file")]
     public function testaa()
     {
-        $sut = new CsvFileStorage("tests/__fakes__/object.csv", FakeValueObject::class);
+        $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object.csv", FakeValueObject::class);
         $itemKey = new ItemKey(0);
         $item = $sut->getByKey($itemKey);
         $this->assertNotInstanceOf(ItemNotFound::class, $item);
     }
 
     #[TestDox("Shall load objects with primary key from file")]
-    #[Group("me")]
     public function testab()
     {
-        $sut = new CsvFileStorage("tests/__fakes__/object-with-pkey.csv", FakeValueObjectWithPrimaryKey::class);
+        $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object-with-pkey.csv", FakeValueObjectWithPrimaryKey::class);
         $primaryKey = "123";
         $itemKey = new ItemKey($primaryKey);
         $item = $sut->getByKey($itemKey);
@@ -176,7 +172,7 @@ final class CsvFileStorageTest extends TestCase
     #[TestDox("Shall load more than one object from file")]
     public function testb()
     {
-        $sut = new CsvFileStorage("tests/__fakes__/object-2.csv", FakeValueObject::class);
+        $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object-2.csv", FakeValueObject::class);
         $this->assertCount(2, $sut);
     }
 
@@ -184,7 +180,7 @@ final class CsvFileStorageTest extends TestCase
     public function testc()
     {
         $this->expectException(DomainException::class);
-        new CsvFileStorage("tests/__fakes__/object-malformed.csv", FakeValueObject::class);
+        new CsvFileStorage(__DIR__ . "/../__fakes__/object-malformed.csv", FakeValueObject::class);
     }
 
     #[TestDox("Shall not set first line when file is empty")]
@@ -197,7 +193,7 @@ final class CsvFileStorageTest extends TestCase
     #[TestDox("Shall parse into target object having union types")]
     public function teste()
     {
-        $sut = new CsvFileStorage("tests/__fakes__/object-unions.csv", FakeValueObjectWithUnions::class);
+        $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object-unions.csv", FakeValueObjectWithUnions::class);
         $this->assertContainsOnlyInstancesOf(FakeValueObjectWithUnions::class, $sut->getAll());
     }
 
@@ -205,7 +201,7 @@ final class CsvFileStorageTest extends TestCase
     public function testf()
     {
         $this->expectException(AmbiguousUnionTypeException::class);
-        new CsvFileStorage("tests/__fakes__/object-unions-malformed.csv", FakeValueObjectWithUnionsError::class);
+        new CsvFileStorage(__DIR__ . "/../__fakes__/object-unions-malformed.csv", FakeValueObjectWithUnionsError::class);
     }
 
     #[TestDox("Shall throw an exception when an invalid value is commited")]
