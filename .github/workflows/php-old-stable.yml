@@ -33,7 +33,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
     - name: Install dependencies
-      run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
+      run: composer install --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
 
     - name: Run test suite
       run: composer ci:test-build
