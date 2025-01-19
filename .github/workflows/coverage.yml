@@ -1,11 +1,10 @@
-name: Pull Request Quality Check
+name: Unit Test Coverage
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'composer.json'
-      - '.github/workflows/*.yml'
       - 'src/**.php'
 
 jobs:
