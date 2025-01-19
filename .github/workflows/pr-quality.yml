@@ -31,7 +31,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
     - name: Install dependencies
-      run: composer install --no-ansi --no-interaction --prefer-dist --no-progress --with-all-dependencies --ignore-platform-req=ext-ast && composer dumpautoload
+      run: composer install --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast && composer dumpautoload
 
     - name: Scanning for lint errors
       run: composer ci:lint
