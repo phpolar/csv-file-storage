@@ -1,3 +1,13 @@
+## 1.0.0 (2025-01-19)
+
+### BREAKING CHANGE
+
+- CsvFileStorage::getByKey now returns ItemFound instead of Item.
+
+### Feat
+
+- use phpolar/storage 3.0
+
 ## 0.6.2 (2025-01-01)
 
 ## 0.6.1 (2023-07-03)
