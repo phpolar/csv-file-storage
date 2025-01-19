@@ -1,49 +1,103 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="319px" preserveAspectRatio="none" style="width:535px;height:319px;" version="1.1" viewBox="0 0 535 319" width="535px" zoomAndPan="magnify"><defs/><g><!--MD5=[403cdfcb274070a3f9729a7ab788ec99]
-cluster Phpolar\\CsvFileStorage--><polygon fill="#FFFFFF" points="254.5,24,443.5,24,450.5,46.2969,513.5,46.2969,513.5,241,254.5,241,254.5,24" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="254.5" x2="450.5" y1="46.2969" y2="46.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="183" x="258.5" y="38.9951">Phpolar\CsvFileStorage</text><!--MD5=[f075466b5a5628840a44b33ab13d7449]
-cluster Phpolar\\Phpolar\\Storage--><polygon fill="#FFFFFF" points="14,224,212,224,219,246.2969,222,246.2969,222,307,14,307,14,224" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="14" x2="219" y1="246.2969" y2="246.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="192" x="18" y="238.9951">Phpolar\Phpolar\Storage</text><!--MD5=[791fcc5d7b2207b7e12e745ba2733fd7]
-class Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException--><rect fill="#FEFECE" height="32" id="Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException" style="stroke: #A80036; stroke-width: 1.5;" width="227" x="270.5" y="126"/><ellipse cx="285.5" cy="142" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M288.4688,147.6406 Q287.8906,147.9375 287.25,148.0781 Q286.6094,148.2344 285.9063,148.2344 Q283.4063,148.2344 282.0781,146.5938 Q280.7656,144.9375 280.7656,141.8125 Q280.7656,138.6875 282.0781,137.0313 Q283.4063,135.375 285.9063,135.375 Q286.6094,135.375 287.25,135.5313 Q287.9063,135.6875 288.4688,135.9844 L288.4688,138.7031 Q287.8438,138.125 287.25,137.8594 Q286.6563,137.5781 286.0313,137.5781 Q284.6875,137.5781 284,138.6563 Q283.3125,139.7188 283.3125,141.8125 Q283.3125,143.9063 284,144.9844 Q284.6875,146.0469 286.0313,146.0469 Q286.6563,146.0469 287.25,145.7813 Q287.8438,145.5 288.4688,144.9219 L288.4688,147.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="195" x="299.5" y="146.1543">AmbiguousUnionTypeException</text><!--MD5=[1ac725021974839d147ffe0f4c9bb3c6]
-class Phpolar\\CsvFileStorage\\CsvFileStorage--><rect fill="#FEFECE" height="32" id="Phpolar\\CsvFileStorage\\CsvFileStorage" style="stroke: #A80036; stroke-width: 1.5;" width="124" x="322" y="193"/><ellipse cx="337" cy="209" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M339.9688,214.6406 Q339.3906,214.9375 338.75,215.0781 Q338.1094,215.2344 337.4063,215.2344 Q334.9063,215.2344 333.5781,213.5938 Q332.2656,211.9375 332.2656,208.8125 Q332.2656,205.6875 333.5781,204.0313 Q334.9063,202.375 337.4063,202.375 Q338.1094,202.375 338.75,202.5313 Q339.4063,202.6875 339.9688,202.9844 L339.9688,205.7031 Q339.3438,205.125 338.75,204.8594 Q338.1563,204.5781 337.5313,204.5781 Q336.1875,204.5781 335.5,205.6563 Q334.8125,206.7188 334.8125,208.8125 Q334.8125,210.9063 335.5,211.9844 Q336.1875,213.0469 337.5313,213.0469 Q338.1563,213.0469 338.75,212.7813 Q339.3438,212.5 339.9688,211.9219 L339.9688,214.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="92" x="351" y="213.1543">CsvFileStorage</text><!--MD5=[377191b83de624673084ab32711e71c0]
-class Phpolar\\CsvFileStorage\\FileNotExistsException--><rect fill="#FEFECE" height="32" id="Phpolar\\CsvFileStorage\\FileNotExistsException" style="stroke: #A80036; stroke-width: 1.5;" width="172" x="298" y="59"/><ellipse cx="313" cy="75" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M315.9688,80.6406 Q315.3906,80.9375 314.75,81.0781 Q314.1094,81.2344 313.4063,81.2344 Q310.9063,81.2344 309.5781,79.5938 Q308.2656,77.9375 308.2656,74.8125 Q308.2656,71.6875 309.5781,70.0313 Q310.9063,68.375 313.4063,68.375 Q314.1094,68.375 314.75,68.5313 Q315.4063,68.6875 315.9688,68.9844 L315.9688,71.7031 Q315.3438,71.125 314.75,70.8594 Q314.1563,70.5781 313.5313,70.5781 Q312.1875,70.5781 311.5,71.6563 Q310.8125,72.7188 310.8125,74.8125 Q310.8125,76.9063 311.5,77.9844 Q312.1875,79.0469 313.5313,79.0469 Q314.1563,79.0469 314.75,78.7813 Q315.3438,78.5 315.9688,77.9219 L315.9688,80.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="140" x="327" y="79.1543">FileNotExistsException</text><!--MD5=[8b8e5ab3ddda216173c72732b9c6bf5d]
-class Phpolar\\Phpolar\\Storage\\AbstractStorage--><rect fill="#FEFECE" height="32" id="Phpolar\\Phpolar\\Storage\\AbstractStorage" style="stroke: #A80036; stroke-width: 1.5;" width="135" x="50" y="259"/><ellipse cx="65" cy="275" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M67.9688,280.6406 Q67.3906,280.9375 66.75,281.0781 Q66.1094,281.2344 65.4063,281.2344 Q62.9063,281.2344 61.5781,279.5938 Q60.2656,277.9375 60.2656,274.8125 Q60.2656,271.6875 61.5781,270.0313 Q62.9063,268.375 65.4063,268.375 Q66.1094,268.375 66.75,268.5313 Q67.4063,268.6875 67.9688,268.9844 L67.9688,271.7031 Q67.3438,271.125 66.75,270.8594 Q66.1563,270.5781 65.5313,270.5781 Q64.1875,270.5781 63.5,271.6563 Q62.8125,272.7188 62.8125,274.8125 Q62.8125,276.9063 63.5,277.9844 Q64.1875,279.0469 65.5313,279.0469 Q66.1563,279.0469 66.75,278.7813 Q67.3438,278.5 67.9688,277.9219 L67.9688,280.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="103" x="79" y="279.1543">AbstractStorage</text><!--MD5=[5c6c7d52e42032554528404b62c1d271]
-class RuntimeException--><rect fill="#FEFECE" height="32" id="RuntimeException" style="stroke: #A80036; stroke-width: 1.5;" width="144" x="45.5" y="76"/><ellipse cx="60.5" cy="92" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M63.4688,97.6406 Q62.8906,97.9375 62.25,98.0781 Q61.6094,98.2344 60.9063,98.2344 Q58.4063,98.2344 57.0781,96.5938 Q55.7656,94.9375 55.7656,91.8125 Q55.7656,88.6875 57.0781,87.0313 Q58.4063,85.375 60.9063,85.375 Q61.6094,85.375 62.25,85.5313 Q62.9063,85.6875 63.4688,85.9844 L63.4688,88.7031 Q62.8438,88.125 62.25,87.8594 Q61.6563,87.5781 61.0313,87.5781 Q59.6875,87.5781 59,88.6563 Q58.3125,89.7188 58.3125,91.8125 Q58.3125,93.9063 59,94.9844 Q59.6875,96.0469 61.0313,96.0469 Q61.6563,96.0469 62.25,95.7813 Q62.8438,95.5 63.4688,94.9219 L63.4688,97.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="112" x="74.5" y="96.1543">RuntimeException</text><!--MD5=[334491fe3395b7e97ffac59bc72f8221]
-class Countable--><rect fill="#FEFECE" height="32" id="Countable" style="stroke: #A80036; stroke-width: 1.5;" width="96" x="69.5" y="176"/><ellipse cx="84.5" cy="192" fill="#B4A7E5" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M80.4219,187.7656 L80.4219,185.6094 L87.8125,185.6094 L87.8125,187.7656 L85.3438,187.7656 L85.3438,195.8438 L87.8125,195.8438 L87.8125,198 L80.4219,198 L80.4219,195.8438 L82.8906,195.8438 L82.8906,187.7656 L80.4219,187.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="64" x="98.5" y="196.1543">Countable</text><!--MD5=[e38d57657b03c365ccdc2255cd53f395]
-reverse link RuntimeException to Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException--><path d="M209.78,99.5 C209.78,99.5 284.5,99.5 284.5,99.5 C284.5,99.5 284.5,113.7 284.5,125.69 " fill="none" id="RuntimeException&lt;-Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException" style="stroke: #516F42; stroke-width: 1.0;"/><polygon fill="none" points="209.78,106.5,189.78,99.5,209.78,92.5,209.78,106.5" style="stroke: #516F42; stroke-width: 1.0;"/><!--MD5=[fd6699ad174f6ffed793c38675ccc7d3]
-reverse link Phpolar\\Phpolar\\Storage\\AbstractStorage to Phpolar\\CsvFileStorage\\CsvFileStorage--><path d="M175.5,238.7 C175.5,238.7 175.5,216.5 175.5,216.5 C175.5,216.5 260.29,216.5 321.73,216.5 " fill="none" id="Phpolar\\Phpolar\\Storage\\AbstractStorage&lt;-Phpolar\\CsvFileStorage\\CsvFileStorage" style="stroke: #516F42; stroke-width: 1.0;"/><polygon fill="none" points="182.5,238.7,175.5,258.7,168.5,238.7,182.5,238.7" style="stroke: #516F42; stroke-width: 1.0;"/><!--MD5=[ae4d5f02b0af7b1f262bdf0ad46799a2]
-reverse link Countable to Phpolar\\CsvFileStorage\\CsvFileStorage--><path d="M185.76,200.5 C185.76,200.5 321.52,200.5 321.52,200.5 " fill="none" id="Countable&lt;-Phpolar\\CsvFileStorage\\CsvFileStorage" style="stroke: #516F42; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="185.76,207.5,165.76,200.5,185.76,193.5,185.76,207.5" style="stroke: #516F42; stroke-width: 1.0;"/><!--MD5=[69b3563bca36be52bc3db0c44fb70c6b]
-reverse link RuntimeException to Phpolar\\CsvFileStorage\\FileNotExistsException--><path d="M209.62,83.5 C209.62,83.5 297.6,83.5 297.6,83.5 " fill="none" id="RuntimeException&lt;-Phpolar\\CsvFileStorage\\FileNotExistsException" style="stroke: #516F42; stroke-width: 1.0;"/><polygon fill="none" points="209.62,90.5,189.62,83.5,209.62,76.5,209.62,90.5" style="stroke: #516F42; stroke-width: 1.0;"/><!--MD5=[49601e79d842ee417324829e49a0ceb4]
-@startuml
-   skinparam ArrowColor #516f42
-   skinparam activityBorderColor #516f42
-   skinparam activityBackgroundColor #ffffff
-   skinparam activityDiamondBorderColor #516f42
-   skinparam activityDiamondBackgroundColor #ffffff
-   skinparam shadowing false
-
-skinparam shadowing false
-skinparam linetype ortho
-hide empty members
-left to right direction
-set namespaceSeparator \\
-
-
-class \\Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException extends \\RuntimeException {
-}
-
-class \\Phpolar\\CsvFileStorage\\CsvFileStorage extends \\Phpolar\\Phpolar\\Storage\\AbstractStorage implements \\Countable {
-}
-
-class \\Phpolar\\CsvFileStorage\\FileNotExistsException extends \\RuntimeException {
-}
-
-@enduml
-
-PlantUML version 1.2020.02(Sun Mar 01 04:22:07 CST 2020)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.18+10-post-Ubuntu-0ubuntu122.04
-Operating System: Linux
-Default Encoding: UTF-8
-Language: en
-Country: US
---></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.42.4 (0)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="535pt" height="292pt"
+ viewBox="0.00 0.00 534.93 292.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 288)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-288 530.93,-288 530.93,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_Global</title>
+<polygon fill="none" stroke="black" points="8,-8 8,-276 518.93,-276 518.93,-8 8,-8"/>
+<text text-anchor="middle" x="263.47" y="-263.2" font-family="Times,serif" font-size="11.00" fill="gray">Global</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_\Phpolar</title>
+<polygon fill="none" stroke="black" points="279.93,-16 279.93,-232 510.93,-232 510.93,-16 279.93,-16"/>
+<text text-anchor="middle" x="395.43" y="-219.2" font-family="Times,serif" font-size="11.00" fill="gray">Phpolar</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_\Phpolar\CsvFileStorage</title>
+<polygon fill="none" stroke="black" points="287.93,-24 287.93,-204 502.93,-204 502.93,-24 287.93,-24"/>
+<text text-anchor="middle" x="395.43" y="-191.2" font-family="Times,serif" font-size="11.00" fill="gray">CsvFileStorage</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_Global\Phpolar</title>
+<polygon fill="none" stroke="black" points="16,-60 16,-204 238.18,-204 238.18,-60 16,-60"/>
+<text text-anchor="middle" x="127.09" y="-191.2" font-family="Times,serif" font-size="11.00" fill="gray">Phpolar</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_Global\Phpolar\Phpolar</title>
+<polygon fill="none" stroke="black" points="24,-68 24,-176 230.18,-176 230.18,-68 24,-68"/>
+<text text-anchor="middle" x="127.09" y="-163.2" font-family="Times,serif" font-size="11.00" fill="gray">Phpolar</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_Global\Phpolar\Phpolar\Storage</title>
+<polygon fill="none" stroke="black" points="32,-76 32,-148 222.18,-148 222.18,-76 32,-76"/>
+<text text-anchor="middle" x="127.09" y="-135.2" font-family="Times,serif" font-size="11.00" fill="gray">Storage</text>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException -->
+<g id="node1" class="node">
+<title>\\Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException</title>
+<polygon fill="none" stroke="black" points="494.93,-122 295.93,-122 295.93,-86 494.93,-86 494.93,-122"/>
+<text text-anchor="middle" x="395.43" y="-101.2" font-family="Courier,monospace" font-size="11.00">AmbiguousUnionTypeException</text>
+</g>
+<!-- RuntimeException -->
+<g id="node5" class="node">
+<title>RuntimeException</title>
+<ellipse fill="none" stroke="black" cx="127.09" cy="-34" rx="96.68" ry="18"/>
+<text text-anchor="middle" x="127.09" y="-30.3" font-family="Times,serif" font-size="14.00" fill="gray">RuntimeException</text>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException&#45;&gt;RuntimeException -->
+<g id="edge1" class="edge">
+<title>\\Phpolar\\CsvFileStorage\\AmbiguousUnionTypeException&#45;&gt;RuntimeException</title>
+<path fill="none" stroke="black" d="M315.79,-85.94C303.76,-83.04 291.5,-80 279.93,-77 250.05,-69.25 217.07,-59.99 189.49,-52.06"/>
+<polygon fill="none" stroke="black" points="190.17,-48.61 179.59,-49.2 188.23,-55.34 190.17,-48.61"/>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\CsvFileStorage -->
+<g id="node2" class="node">
+<title>\\Phpolar\\CsvFileStorage\\CsvFileStorage</title>
+<polygon fill="none" stroke="black" points="450.93,-176 339.93,-176 339.93,-140 450.93,-140 450.93,-176"/>
+<text text-anchor="middle" x="395.43" y="-155.2" font-family="Courier,monospace" font-size="11.00">CsvFileStorage</text>
+</g>
+<!-- AbstractStorage -->
+<g id="node4" class="node">
+<title>AbstractStorage</title>
+<ellipse fill="none" stroke="black" cx="127.09" cy="-102" rx="87.18" ry="18"/>
+<text text-anchor="middle" x="127.09" y="-98.3" font-family="Times,serif" font-size="14.00" fill="gray">AbstractStorage</text>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\CsvFileStorage&#45;&gt;AbstractStorage -->
+<g id="edge2" class="edge">
+<title>\\Phpolar\\CsvFileStorage\\CsvFileStorage&#45;&gt;AbstractStorage</title>
+<path fill="none" stroke="black" d="M339.89,-145.89C309.9,-139.3 272.02,-131.06 238.18,-124 226.06,-121.47 213.18,-118.84 200.66,-116.32"/>
+<polygon fill="none" stroke="black" points="201.21,-112.86 190.72,-114.32 199.83,-119.72 201.21,-112.86"/>
+</g>
+<!-- Countable -->
+<g id="node6" class="node">
+<title>Countable</title>
+<ellipse fill="none" stroke="black" cx="127.09" cy="-230" rx="57.69" ry="18"/>
+<text text-anchor="middle" x="127.09" y="-226.3" font-family="Times,serif" font-size="14.00" fill="gray">Countable</text>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\CsvFileStorage&#45;&gt;Countable -->
+<g id="edge3" class="edge">
+<title>\\Phpolar\\CsvFileStorage\\CsvFileStorage&#45;&gt;Countable</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M339.89,-172.74C293.53,-185.28 227.35,-203.17 181.36,-215.6"/>
+<polygon fill="none" stroke="black" points="180.31,-212.26 171.57,-218.25 182.14,-219.01 180.31,-212.26"/>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\FileNotExistsException -->
+<g id="node3" class="node">
+<title>\\Phpolar\\CsvFileStorage\\FileNotExistsException</title>
+<polygon fill="none" stroke="black" points="477.93,-68 312.93,-68 312.93,-32 477.93,-32 477.93,-68"/>
+<text text-anchor="middle" x="395.43" y="-47.2" font-family="Courier,monospace" font-size="11.00">FileNotExistsException</text>
+</g>
+<!-- \\Phpolar\\CsvFileStorage\\FileNotExistsException&#45;&gt;RuntimeException -->
+<g id="edge4" class="edge">
+<title>\\Phpolar\\CsvFileStorage\\FileNotExistsException&#45;&gt;RuntimeException</title>
+<path fill="none" stroke="black" d="M312.71,-45.09C286.43,-43.51 256.98,-41.74 229.46,-40.09"/>
+<polygon fill="none" stroke="black" points="229.61,-36.59 219.42,-39.49 229.19,-43.58 229.61,-36.59"/>
+</g>
+</g>
+</svg>
