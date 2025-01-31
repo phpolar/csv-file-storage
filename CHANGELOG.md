@@ -1,3 +1,9 @@
+## 1.1.1 (2025-01-30)
+
+### Fix
+
+- **CsvFileStorage**: explicity declare escape value
+
 ## 1.1.0 (2025-01-30)
 
 ## 1.0.0 (2025-01-19)
