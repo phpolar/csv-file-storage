@@ -3,6 +3,11 @@ name: PHP Old Stable Version Builds
 on:
   push:
     branches: [main]
+    paths:
+      - '**.php'
+      - '!examples/**'
+      - '!config/**'
+      - '!.phan/**'
 
 jobs:
   build_php_old_stable:
