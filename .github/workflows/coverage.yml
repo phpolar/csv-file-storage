@@ -8,7 +8,7 @@ on:
       - 'src/**.php'
 
 jobs:
-  pr_quality:
+  coverage:
     runs-on: ubuntu-latest
 
     steps:
