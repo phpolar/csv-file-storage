@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bde02f68f259dd7c0337cf464ce75af4",
+    "content-hash": "370f2b6ae9f7a69478ebaa9df556f7e5",
     "packages": [
         {
             "name": "phpolar/storage",
@@ -4809,7 +4809,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~8.1 | ~8.2 | ~8.3"
+        "php": "~8.1 | ~8.2 | ~8.3 | ~8.4"
     },
     "platform-dev": {
         "ext-ast": "*",
