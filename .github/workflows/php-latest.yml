@@ -5,13 +5,13 @@ on:
     - cron: '19 7 * * 6'
 
 jobs:
-  build_latest_and_nightly:
+  build:
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: true
     strategy:
       matrix:
-        operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-        php-versions: [nightly]
+        operating-system: ['ubuntu-24.04', 'ubuntu-22.04', 'ubuntu-20.04', 'windows-latest', 'macos-latest']
+        php-versions: [latest, nightly]
         phpunit-versions: ['latest']
     steps:
     - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-php-
     - name: Install dependencies
-      run: composer install --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
+      run: composer update --no-ansi --no-interaction --prefer-dist --no-progress --ignore-platform-req=ext-ast
 
     - name: Run test suite
       run: composer ci:test-build
