@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "phpolar/storage",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpolar/storage.git",
-                "reference": "d53e7119026c993d94b8b803f826df94c1de2a6b"
+                "reference": "3313d70fff946af3a4f1a747f4073ad292d4dfec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/storage/zipball/d53e7119026c993d94b8b803f826df94c1de2a6b",
-                "reference": "d53e7119026c993d94b8b803f826df94c1de2a6b",
+                "url": "https://api.github.com/repos/phpolar/storage/zipball/3313d70fff946af3a4f1a747f4073ad292d4dfec",
+                "reference": "3313d70fff946af3a4f1a747f4073ad292d4dfec",
                 "shasum": ""
             },
             "require": {
@@ -29,8 +29,8 @@
                 "phan/phan": "^5.4",
                 "php-coveralls/php-coveralls": "^2.7.0",
                 "phpmd/phpmd": "^2.15.0",
-                "phpstan/phpstan": "^1.9",
-                "phpunit/phpunit": "^11.4.4",
+                "phpstan/phpstan": "^1.9 || ^2.0",
+                "phpunit/phpunit": "^11.4.4 || ^12.0.0",
                 "squizlabs/php_codesniffer": "^3.11.1"
             },
             "type": "library",
@@ -46,9 +46,9 @@
             "description": "A convenient tool to speed up the creation of data storage for application development.",
             "support": {
                 "issues": "https://github.com/phpolar/storage/issues",
-                "source": "https://github.com/phpolar/storage/tree/3.1.0"
+                "source": "https://github.com/phpolar/storage/tree/3.1.1"
             },
-            "time": "2025-03-20T04:39:08+00:00"
+            "time": "2025-04-16T04:16:28+00:00"
         }
     ],
     "packages-dev": [
