@@ -2,7 +2,7 @@ name: Prod Upgrade Release
 on:
   schedule:
     # every Sunday at 10:00PM UTC
-    - cron: '0 10 * * 0'
+    - cron: '0 22 * * 0'
 permissions:
   contents: write
 jobs:
