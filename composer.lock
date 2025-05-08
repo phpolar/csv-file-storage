@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "817f30448b317fefa70c193720a907de",
+    "content-hash": "d8323e8f550379a0000925924ced3e39",
     "packages": [
         {
             "name": "phpolar/storage",
-            "version": "3.1.1",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpolar/storage.git",
-                "reference": "3313d70fff946af3a4f1a747f4073ad292d4dfec"
+                "reference": "8fe2bdad5fe60a5985762f0674477b2ee85cd3f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/storage/zipball/3313d70fff946af3a4f1a747f4073ad292d4dfec",
-                "reference": "3313d70fff946af3a4f1a747f4073ad292d4dfec",
+                "url": "https://api.github.com/repos/phpolar/storage/zipball/8fe2bdad5fe60a5985762f0674477b2ee85cd3f1",
+                "reference": "8fe2bdad5fe60a5985762f0674477b2ee85cd3f1",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,9 @@
             "description": "A convenient tool to speed up the creation of data storage for application development.",
             "support": {
                 "issues": "https://github.com/phpolar/storage/issues",
-                "source": "https://github.com/phpolar/storage/tree/3.1.1"
+                "source": "https://github.com/phpolar/storage/tree/4.0.0"
             },
-            "time": "2025-04-16T04:16:28+00:00"
+            "time": "2025-05-08T03:25:12+00:00"
         }
     ],
     "packages-dev": [
@@ -4707,7 +4707,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -4717,5 +4717,5 @@
         "ext-ast": "*",
         "ext-openssl": "*"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
