@@ -1,0 +1,11 @@
+name: Prod Upgrade Release
+on:
+  schedule:
+    # every Sunday at 10:00PM UTC
+    - cron: '0 22 * * 0'
+permissions:
+  contents: write
+jobs:
+  prod_upgrade_release:
+    uses: phpolar/github-workflows/.github/workflows/prod-upgrade-release.yml@v1
+    secrets: inherit

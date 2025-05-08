@@ -23,14 +23,14 @@ final class MemoryUsageTest extends TestCase
     {
         // if it were preloaded
         include_once "src/CsvFileStorage.php";
-        include_once "vendor/phpolar/phpolar-storage/src/AbstractStorage.php";
-        include_once "vendor/phpolar/phpolar-storage/src/Item.php";
-        include_once "vendor/phpolar/phpolar-storage/src/ItemKey.php";
+        include_once "vendor/phpolar/storage/src/AbstractStorage.php";
+        include_once "vendor/phpolar/storage/src/Item.php";
+        include_once "vendor/phpolar/storage/src/ItemKey.php";
         $totalUsed = -memory_get_usage();
         $sut = new CsvFileStorage("php://memory");
         $item0 = new Item((object) ["name" => "eric"]);
         $key0 = new ItemKey(0);
-        $sut->storeByKey($key0, $item0);
+        $sut->save($key0, $item0);
         $sut->commit();
         $totalUsed += memory_get_usage();
         $this->assertGreaterThan(0, $totalUsed);
@@ -45,7 +45,7 @@ final class MemoryUsageTest extends TestCase
         $sut = new CsvFileStorage("php://memory");
         $item0 = new Item((object) ["name" => "eric"]);
         $key0 = new ItemKey(0);
-        $sut->storeByKey($key0, $item0);
+        $sut->save($key0, $item0);
         $sut->commit();
         $totalUsed += memory_get_usage();
         $this->assertGreaterThan(0, $totalUsed);

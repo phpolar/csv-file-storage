@@ -1,0 +1,18 @@
+name: Source code only changes
+on:
+  pull_request:
+    branches:
+      - 'main'
+    paths:
+      - '**.php'
+      - '!tests/**'
+      - '!examples/**'
+      - '!config/**'
+      - '!.phan/**'
+permissions:
+  contents: read
+  security-events: write
+jobs:
+  PHPMD:
+    uses: phpolar/github-workflows/.github/workflows/phpmd.yml@v1
+    secrets: inherit

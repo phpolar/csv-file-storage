@@ -1,3 +1,31 @@
+## 2.0.0 (2025-05-07)
+
+### Feat
+
+- use storage api 4.0
+
+## 1.2.3 (2025-04-20)
+
+## 1.2.2 (2025-04-16)
+
+## 1.2.1 (2025-03-21)
+
+## 1.2.0 (2025-03-20)
+
+### Feat
+
+- **composer**: require php 8.3 or greater
+
+## 1.1.2 (2025-01-30)
+
+## 1.1.1 (2025-01-30)
+
+### Fix
+
+- **CsvFileStorage**: explicity declare escape value
+
+## 1.1.0 (2025-01-30)
+
 ## 1.0.0 (2025-01-19)
 
 ### BREAKING CHANGE

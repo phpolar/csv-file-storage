@@ -101,10 +101,10 @@ final class CsvFileStorage extends AbstractStorage implements Countable
                     $objVars = get_object_vars($record);
                     $this->setUpObject($index, $record, $objVars);
                     $convertedVars = $this->convertObjVars($objVars);
-                    fputcsv($this->writeStream, $convertedVars);
+                    fputcsv($this->writeStream, $convertedVars, escape: "\\");
                     break;
                 case is_scalar($record):
-                    fputcsv($this->writeStream, [$record]);
+                    fputcsv($this->writeStream, [$record], escape: "\\");
                     break;
                 case is_array($record):
                     /**
@@ -114,6 +114,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
                     fputcsv(
                         $this->writeStream,
                         $arr,
+                        escape: "\\"
                     );
                     break;
                 default:
@@ -160,7 +161,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         if ($this->hasObjects() === false) {
             $this->storeLine($this->firstLine);
         }
-        while (($line = fgetcsv($this->readStream)) !== false) {
+        while (($line = fgetcsv($this->readStream, escape: "\\")) !== false) {
             $this->storeLine($line);
         }
         if (count($this) === 0) {
@@ -191,7 +192,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
 
     private function setFirstLine(): void
     {
-        $line = fgetcsv($this->readStream);
+        $line = fgetcsv($this->readStream, escape: "\\");
         if ($line !== false) {
             $this->firstLine ??= $line;
         }
@@ -204,7 +205,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
     {
         if ($index === 0) {
             $this->typeClassName = get_class($record);
-            fputcsv($this->writeStream, array_keys($objVars));
+            fputcsv($this->writeStream, array_keys($objVars), escape: "\\");
         }
     }
 
@@ -278,7 +279,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         $item = new Item($obj);
         $keyVal = method_exists($obj, "getPrimaryKey") === true ? $obj->getPrimaryKey() : ++$this->lineNo;
         $key = new ItemKey($keyVal);
-        $this->storeByKey($key, $item);
+        $this->save($key, $item);
     }
 
     /**
@@ -292,6 +293,6 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         }
         $item = new Item(array_combine(range(0, count($this->firstLine) - 1), $line));
         $key = new ItemKey(++$this->lineNo);
-        $this->storeByKey($key, $item);
+        $this->save($key, $item);
     }
 }
