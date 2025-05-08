@@ -55,9 +55,9 @@ final class CsvFileStorageTest extends TestCase
         $expected = $givenObject;
         $item0 = new Item($givenObject);
         $key0 = new ItemKey(0);
-        $sut->storeByKey($key0, $item0);
+        $sut->save($key0, $item0);
         $sut->commit();
-        $stored = $sut->getByKey($key0);
+        $stored = $sut->getOne($key0);
         $this->assertObjectEquals($expected, $stored->bind());
     }
 
@@ -70,9 +70,9 @@ final class CsvFileStorageTest extends TestCase
         $expected = $givenObject;
         $item0 = new Item($givenObject);
         $key0 = new ItemKey($givenPrimaryKey);
-        $sut->storeByKey($key0, $item0);
+        $sut->save($key0, $item0);
         $sut->commit();
-        $stored = $sut->getByKey($key0);
+        $stored = $sut->getOne($key0);
         $this->assertObjectEquals($expected, $stored->bind());
     }
 
@@ -84,9 +84,9 @@ final class CsvFileStorageTest extends TestCase
         $givenData = ["name" => "eric"];
         $item0 = new Item($givenData);
         $key0 = new ItemKey(0);
-        $sut->storeByKey($key0, $item0);
+        $sut->save($key0, $item0);
         $sut->commit();
-        $stored = $sut->getByKey($key0)->bind();
+        $stored = $sut->getOne($key0)->bind();
         $this->assertSame($expected, $stored);
     }
 
@@ -100,11 +100,11 @@ final class CsvFileStorageTest extends TestCase
         $expected = $givenValue;
         $item0 = new Item($givenValue);
         $key0 = new ItemKey(0);
-        $sut->storeByKey($key0, $item0);
+        $sut->save($key0, $item0);
         $sut->commit();
         unset($sut);
         $sut2 = new CsvFileStorage(self::$filenames[0]);
-        $stored = $sut2->getByKey($key0)->bind();
+        $stored = $sut2->getOne($key0)->bind();
         $this->assertCount(1, $stored);
         $this->assertEquals($expected, $stored[0]);
         restore_error_handler();
@@ -155,7 +155,7 @@ final class CsvFileStorageTest extends TestCase
     {
         $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object.csv", FakeValueObject::class);
         $itemKey = new ItemKey(0);
-        $item = $sut->getByKey($itemKey);
+        $item = $sut->getOne($itemKey);
         $this->assertNotInstanceOf(ItemNotFound::class, $item);
     }
 
@@ -165,7 +165,7 @@ final class CsvFileStorageTest extends TestCase
         $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object-with-pkey.csv", FakeValueObjectWithPrimaryKey::class);
         $primaryKey = "123";
         $itemKey = new ItemKey($primaryKey);
-        $item = $sut->getByKey($itemKey);
+        $item = $sut->getOne($itemKey);
         $this->assertNotInstanceOf(ItemNotFound::class, $item);
     }
 
@@ -213,7 +213,7 @@ final class CsvFileStorageTest extends TestCase
         fclose($invalid);
         $key = new ItemKey(0);
         $item = new Item($invalid);
-        $sut->storeByKey($key, $item);
+        $sut->save($key, $item);
         $sut->commit();
     }
 
