@@ -104,11 +104,8 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    CsvFileStorage
+    CsvFileStorageLifeCycleHooks
 
-        <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Phpolar\Storage\AbstractStorage">AbstractStorage</abbr>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -120,7 +117,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Countable">Countable</abbr>,                             <a href="classes/Phpolar-CsvFileStorage-Closable.html"><abbr title="\Phpolar\CsvFileStorage\Closable">Closable</abbr></a>,                             <a href="classes/Phpolar-CsvFileStorage-Loadable.html"><abbr title="\Phpolar\CsvFileStorage\Loadable">Loadable</abbr></a>,                             <a href="classes/Phpolar-CsvFileStorage-Persistable.html"><abbr title="\Phpolar\CsvFileStorage\Persistable">Persistable</abbr></a>                    </span>
+                            <abbr title="\Phpolar\Storage\LifeCycleHooks">LifeCycleHooks</abbr>                    </span>
     
     </h2>
 
@@ -132,14 +129,13 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorageLifeCycleHooks.php"><a href="files/csvfilestoragelifecyclehooks.html">CsvFileStorageLifeCycleHooks.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Allows for saving data to a CSV file.</p>
-
+        
 
 
 
@@ -150,7 +146,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -158,11 +154,11 @@
 
     <h4 id="toc-interfaces">
         Interfaces
-        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Countable">Countable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsvFileStorage-Closable.html"><abbr title="\Phpolar\CsvFileStorage\Closable">Closable</abbr></a></dt><dd>Provides resource closing functionality.</dd>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsvFileStorage-Loadable.html"><abbr title="\Phpolar\CsvFileStorage\Loadable">Loadable</abbr></a></dt><dd>Supports loading data from the storage context.</dd>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsvFileStorage-Persistable.html"><abbr title="\Phpolar\CsvFileStorage\Persistable">Persistable</abbr></a></dt><dd>Supports persisting data into a storage context.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Phpolar\Storage\LifeCycleHooks">LifeCycleHooks</abbr></dt>    </dl>
 
 
 
@@ -172,36 +168,27 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method___construct">__construct()</a>
+    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_close">close()</a>
+    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method_onDestroy">onDestroy()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Close resources.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_load">load()</a>
+    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method_onInit">onInit()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Load data from the storage context into memory.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_persist">persist()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Persist data into a storage context.</dd>
 
     </dl>
 
@@ -214,7 +201,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -225,20 +212,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorageLifeCycleHooks.php"><a href="files/csvfilestoragelifecyclehooks.html">CsvFileStorageLifeCycleHooks.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filename</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$typeClassName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsvFileStorage-Persistable.html"><abbr title="\Phpolar\CsvFileStorage\Persistable">Persistable</abbr></a>|<a href="classes/Phpolar-CsvFileStorage-Loadable.html"><abbr title="\Phpolar\CsvFileStorage\Loadable">Loadable</abbr></a>|<a href="classes/Phpolar-CsvFileStorage-Closable.html"><abbr title="\Phpolar\CsvFileStorage\Closable">Closable</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$storage</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -247,16 +234,9 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filename</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$storage</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Phpolar-CsvFileStorage-Persistable.html"><abbr title="\Phpolar\CsvFileStorage\Persistable">Persistable</abbr></a>|<a href="classes/Phpolar-CsvFileStorage-Loadable.html"><abbr title="\Phpolar\CsvFileStorage\Loadable">Loadable</abbr></a>|<a href="classes/Phpolar-CsvFileStorage-Closable.html"><abbr title="\Phpolar\CsvFileStorage\Closable">Closable</abbr></a></span>
                             </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$typeClassName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -274,23 +254,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_close">
-        close()
-        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_close" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_onDestroy">
+        onDestroy()
+        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method_onDestroy" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorageLifeCycleHooks.php"><a href="files/csvfilestoragelifecyclehooks.html">CsvFileStorageLifeCycleHooks.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Close resources.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">close</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">onDestroy</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -309,58 +288,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_load">
-        load()
-        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_load" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_onInit">
+        onInit()
+        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method_onInit" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorageLifeCycleHooks.php"><a href="files/csvfilestoragelifecyclehooks.html">CsvFileStorageLifeCycleHooks.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Load data from the storage context into memory.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">load</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_persist">
-        persist()
-        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_persist" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">89</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Persist data into a storage context.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">persist</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">onInit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -379,7 +322,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/CsvFileStorage.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/CsvFileStorageLifeCycleHooks.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -478,7 +421,7 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -486,10 +429,9 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_close">close()</a></li>
-                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_load">load()</a></li>
-                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_persist">persist()</a></li>
+                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method_onDestroy">onDestroy()</a></li>
+                                            <li class=""><a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#method_onInit">onInit()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -509,7 +451,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Phpolar-CsvFileStorage-CsvFileStorageLifeCycleHooks.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
