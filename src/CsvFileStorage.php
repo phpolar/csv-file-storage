@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Phpolar\CsvFileStorage;
 
-use Phpolar\Phpolar\Storage\AbstractStorage;
-use Phpolar\Phpolar\Storage\Item;
-use Phpolar\Phpolar\Storage\ItemKey;
+use Phpolar\Storage\AbstractStorage;
 use Countable;
 use DateTime;
 use DateTimeImmutable;
@@ -18,7 +16,7 @@ use ReflectionUnionType;
 /**
  * Allows for saving data to a CSV file.
  */
-final class CsvFileStorage extends AbstractStorage implements Countable
+final class CsvFileStorage extends AbstractStorage implements Countable, Closable, Loadable, Persistable
 {
     /**
      * Where the data was be persisted to.
@@ -65,15 +63,19 @@ final class CsvFileStorage extends AbstractStorage implements Countable
 
     private const UNIX_EPOCH = "19700101 000000";
 
-    public function __construct(private string $filename, private ?string $typeClassName = null)
-    {
+    public function __construct(
+        private string $filename,
+        private ?string $typeClassName = null,
+    ) {
         // set up the write stream first
         $this->setUpWriteStream($filename);
         $this->setUpReadStream($filename);
-        parent::__construct();
+        parent::__construct(
+            new CsvFileStorageLifeCycleHooks($this)
+        );
     }
 
-    public function __destruct()
+    public function close(): void
     {
         if (is_resource($this->readStream) === true) {
             fclose($this->readStream);
@@ -84,7 +86,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         }
     }
 
-    public function commit(): void
+    public function persist(): void
     {
         if ($this->fileSize > 0) {
             fclose($this->writeStream);
@@ -95,7 +97,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
             }
             // @codeCoverageIgnoreEnd
         }
-        foreach ($this->getAll() as $index => $record) {
+        foreach ($this->findAll() as $index => $record) {
             switch (true) {
                 case is_object($record):
                     $objVars = get_object_vars($record);
@@ -140,16 +142,7 @@ final class CsvFileStorage extends AbstractStorage implements Countable
         );
     }
 
-    /**
-     * Get the count of items in storage
-     */
-    public function count(): int
-    {
-        $result = $this->getCount();
-        return max($result, 0);
-    }
-
-    protected function load(): void
+    public function load(): void
     {
         if ($this->fileSize === 0) {
             return;
@@ -276,10 +269,8 @@ final class CsvFileStorage extends AbstractStorage implements Countable
                 default => $propValue,
             };
         }
-        $item = new Item($obj);
-        $keyVal = method_exists($obj, "getPrimaryKey") === true ? $obj->getPrimaryKey() : ++$this->lineNo;
-        $key = new ItemKey($keyVal);
-        $this->save($key, $item);
+        $key = method_exists($obj, "getPrimaryKey") === true ? $obj->getPrimaryKey() : ++$this->lineNo;
+        $this->save($key, $obj);
     }
 
     /**
@@ -291,8 +282,8 @@ final class CsvFileStorage extends AbstractStorage implements Countable
             $this->storeObjLine(array_filter($this->firstLine), $line);
             return;
         }
-        $item = new Item(array_combine(range(0, count($this->firstLine) - 1), $line));
-        $key = new ItemKey(++$this->lineNo);
+        $item = array_combine(range(0, count($this->firstLine) - 1), $line);
+        $key = ++$this->lineNo;
         $this->save($key, $item);
     }
 }
