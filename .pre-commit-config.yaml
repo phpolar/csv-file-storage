@@ -5,6 +5,7 @@ repos:
     rev: v4.3.0
     hooks:
       - id: trailing-whitespace
+        exclude: docs
       - id: end-of-file-fixer
         exclude: (docs|^acceptance-test-results\.md$)
       - id: check-json
