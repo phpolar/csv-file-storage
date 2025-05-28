@@ -1,2 +1,2 @@
 id,title,myInput,myInt,myBool,myNull,myFloat
-123,"some title","some value",,,,1.0
+123,"some title","some value",0,,,1

@@ -1,2 +1,2 @@
 strUn,intUn,floatUn,boolUn,dateTimeUn,dateTimeImmUn,noType
-"some title",1,2.0,true,"2022-02-23 12:00:00","2022-02-23 12:00:00",what
+"some title",1,2,1,,2022-02-23T12:00:00+00:00,what

@@ -1,3 +1,3 @@
 title,myInput,myInt,myBool,myNull,myFloat
-"some title 1","some value 1",,,1.0,
-"some title 2","some value 2",1,true,,1.0
+"some title 1","some value 1",0,,1.0,0
+"some title 2","some value 2",1,1,,1
