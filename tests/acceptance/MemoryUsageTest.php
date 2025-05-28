@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Phpolar\CsvFileStorage;
 
-use Phpolar\Phpolar\Storage\Item;
-use Phpolar\Phpolar\Storage\ItemKey;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -23,15 +21,20 @@ final class MemoryUsageTest extends TestCase
     {
         // if it were preloaded
         include_once "src/CsvFileStorage.php";
+        include_once "src/Closable.php";
+        include_once "src/Loadable.php";
+        include_once "src/Persistable.php";
+        include_once "src/CsvFileStorageLifeCycleHooks.php";
         include_once "vendor/phpolar/storage/src/AbstractStorage.php";
-        include_once "vendor/phpolar/storage/src/Item.php";
-        include_once "vendor/phpolar/storage/src/ItemKey.php";
+        include_once "vendor/phpolar/storage/src/LifeCycleHooks.php";
+        include_once "vendor/phpolar/storage/src/Result.php";
+        include_once "vendor/phpolar/storage/src/StorageContext.php";
         $totalUsed = -memory_get_usage();
         $sut = new CsvFileStorage("php://memory");
-        $item0 = new Item((object) ["name" => "eric"]);
-        $key0 = new ItemKey(0);
+        $item0 = (object) ["name" => "eric"];
+        $key0 = 0;
         $sut->save($key0, $item0);
-        $sut->commit();
+        $sut->persist();
         $totalUsed += memory_get_usage();
         $this->assertGreaterThan(0, $totalUsed);
         $this->assertLessThanOrEqual((int) PROJECT_MEMORY_USAGE_THRESHOLD, $totalUsed);
@@ -43,10 +46,10 @@ final class MemoryUsageTest extends TestCase
     {
         $totalUsed = -memory_get_usage();
         $sut = new CsvFileStorage("php://memory");
-        $item0 = new Item((object) ["name" => "eric"]);
-        $key0 = new ItemKey(0);
+        $item0 = (object) ["name" => "eric"];
+        $key0 = 0;
         $sut->save($key0, $item0);
-        $sut->commit();
+        $sut->persist();
         $totalUsed += memory_get_usage();
         $this->assertGreaterThan(0, $totalUsed);
         $this->assertLessThanOrEqual((int) PROJECT_MEMORY_USAGE_THRESHOLD_WITHOUT_PRELOADING, $totalUsed);

@@ -1,4 +1,4 @@
-# CSV File Storage Acceptance Test Report
+# Acceptance Test Report
 
 ## Memory Usage (Phpolar\CsvFileStorage\MemoryUsage)
 

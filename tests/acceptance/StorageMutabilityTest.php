@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Phpolar\CsvFileStorage;
 
 use Phpolar\CsvFileStorage\Tests\Fakes\FakeValueObject;
-use Phpolar\Phpolar\Storage\Item;
-use Phpolar\Phpolar\Storage\ItemKey;
-use Phpolar\Phpolar\Storage\ItemNotFound;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -33,14 +30,15 @@ final class StorageMutabilityTest extends TestCase
     public function criterionA()
     {
         $sutA = new CsvFileStorage($this->filename);
-        $key = new ItemKey(0);
-        $item = new Item(PHP_INT_MAX);
+        $key = 0;
+        $item = PHP_INT_MAX;
         $sutA->save($key, $item);
-        $sutA->commit();
+        unset($sutA);
+        gc_collect_cycles();
         $this->assertFileExists($this->filename);
         $sutB = new CsvFileStorage($this->filename);
-        $stored = $sutB->getOne($key);
-        $this->assertContains((string) $item->bind(), $stored->bind());
+        $stored = $sutB->find($key)->tryUnwrap();
+        $this->assertContains((string) $item, $stored);
     }
 
     #[Test]
@@ -48,20 +46,22 @@ final class StorageMutabilityTest extends TestCase
     public function criterionB()
     {
         $sutA = new CsvFileStorage($this->filename);
-        $key0 = new ItemKey(0);
-        $item0 = new Item(PHP_INT_MAX);
+        $key0 = 0;
+        $item0 = PHP_INT_MAX;
         $sutA->save($key0, $item0);
-        $sutA->commit();
+        unset($sutA);
+        gc_collect_cycles();
         $sutB = new CsvFileStorage($this->filename);
-        $key1 = new ItemKey(1);
-        $item1 = new Item(PHP_INT_MIN);
+        $key1 = 1;
+        $item1 = PHP_INT_MIN;
         $sutB->save($key1, $item1);
-        $sutB->commit();
+        unset($sutB);
+        gc_collect_cycles();
         $sutC = new CsvFileStorage($this->filename);
-        $stored0 = $sutC->getOne($key0);
-        $stored1 = $sutC->getOne($key1);
-        $this->assertContains((string) $item0->bind(), $stored0->bind());
-        $this->assertContains((string) $item1->bind(), $stored1->bind());
+        $stored0 = $sutC->find($key0)->tryUnwrap();
+        $stored1 = $sutC->find($key1)->tryUnwrap();
+        $this->assertContains((string) $item0, $stored0);
+        $this->assertContains((string) $item1, $stored1);
     }
 
     #[Test]
@@ -69,31 +69,31 @@ final class StorageMutabilityTest extends TestCase
     public function criterionC()
     {
         $sutA = new CsvFileStorage($this->filename);
-        $key0 = new ItemKey(0);
-        $item0 = new Item(PHP_INT_MAX);
+        $key0 = 0;
+        $item0 = PHP_INT_MAX;
         $sutA->save($key0, $item0);
-        $sutA->commit();
+        $sutA->persist();
         unset($sutA);
         $sutB = new CsvFileStorage($this->filename);
-        $key1 = new ItemKey(1);
-        $item1 = new Item(PHP_INT_MIN);
-        $key2 = new ItemKey(2);
-        $item2 = new Item(PHP_OS);
+        $key1 = 1;
+        $item1 = PHP_INT_MIN;
+        $key2 = 2;
+        $item2 = PHP_OS;
         $sutB->save($key1, $item1);
         $sutB->save($key2, $item2);
-        $sutB->commit();
+        $sutB->persist();
         unset($sutB);
         $sutC = new CsvFileStorage($this->filename);
         $sutC->remove($key2);
-        $sutC->commit();
+        $sutC->persist();
         unset($sutC);
         $sutD = new CsvFileStorage($this->filename);
-        $stored0 = $sutD->getOne($key0);
-        $stored1 = $sutD->getOne($key1);
-        $stored2 = $sutD->getOne($key2);
-        $this->assertContains((string) $item0->bind(), $stored0->bind());
-        $this->assertContains((string) $item1->bind(), $stored1->bind());
-        $this->assertInstanceOf(ItemNotFound::class, $stored2);
+        $stored0 = $sutD->find($key0);
+        $stored1 = $sutD->find($key1);
+        $stored2 = $sutD->find($key2)->orElse(static fn() => "not found");
+        $this->assertContains((string) $item0, $stored0->tryUnwrap());
+        $this->assertContains((string) $item1, $stored1->tryUnwrap());
+        $this->assertSame("not found", $stored2->tryUnwrap());
     }
 
     #[Test]
@@ -101,29 +101,29 @@ final class StorageMutabilityTest extends TestCase
     public function criterionD()
     {
         $sutA = new CsvFileStorage($this->filename);
-        $key0 = new ItemKey(0);
-        $item0 = new Item(PHP_INT_MAX);
+        $key0 = 0;
+        $item0 = PHP_INT_MAX;
         $sutA->save($key0, $item0);
-        $sutA->commit();
+        $sutA->persist();
         $sutB = new CsvFileStorage($this->filename);
-        $key1 = new ItemKey(1);
-        $item1 = new Item(PHP_INT_MIN);
-        $item2 = new Item(PHP_OS);
-        $key2 = new ItemKey(2);
+        $key1 = 1;
+        $item1 = PHP_INT_MIN;
+        $item2 = PHP_OS;
+        $key2 = 2;
         $sutB->save($key1, $item1);
         $sutB->save($key2, $item2);
-        $sutB->commit();
+        $sutB->persist();
         $sutC = new CsvFileStorage($this->filename);
-        $item2Updated = new Item(PHP_SAPI);
+        $item2Updated = PHP_SAPI;
         $sutC->replace($key2, $item2Updated);
-        $sutC->commit();
+        $sutC->persist();
         $sutD = new CsvFileStorage($this->filename);
-        $stored0 = $sutD->getOne($key0);
-        $stored1 = $sutD->getOne($key1);
-        $stored2 = $sutD->getOne($key2);
-        $this->assertContains((string) $item0->bind(), $stored0->bind());
-        $this->assertContains((string) $item1->bind(), $stored1->bind());
-        $this->assertContains((string) $item2Updated->bind(), $stored2->bind());
+        $stored0 = $sutD->find($key0);
+        $stored1 = $sutD->find($key1);
+        $stored2 = $sutD->find($key2);
+        $this->assertContains((string) $item0, $stored0->tryUnwrap());
+        $this->assertContains((string) $item1, $stored1->tryUnwrap());
+        $this->assertContains((string) $item2Updated, $stored2->tryUnwrap());
     }
 
     #[Test]
@@ -131,31 +131,31 @@ final class StorageMutabilityTest extends TestCase
     public function criterionE()
     {
         $sutA = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $key0 = new ItemKey(0);
-        $item0 = new Item(new FakeValueObject("fake1"));
+        $key0 = 0;
+        $item0 = new FakeValueObject("fake1");
         $sutA->save($key0, $item0);
-        $sutA->commit();
+        $sutA->persist();
         unset($sutA);
         $sutB = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $key1 = new ItemKey(1);
-        $item1 = new Item(new FakeValueObject("fake2"));
-        $key2 = new ItemKey(2);
-        $item2 = new Item(new FakeValueObject("fake3"));
+        $key1 = 1;
+        $item1 = new FakeValueObject("fake2");
+        $key2 = 2;
+        $item2 = new FakeValueObject("fake3");
         $sutB->save($key1, $item1);
         $sutB->save($key2, $item2);
-        $sutB->commit();
+        $sutB->persist();
         unset($sutB);
         $sutC = new CsvFileStorage($this->filename, FakeValueObject::class);
         $sutC->remove($key2);
-        $sutC->commit();
+        $sutC->persist();
         unset($sutC);
         $sutD = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $stored0 = $sutD->getOne($key0);
-        $stored1 = $sutD->getOne($key1);
-        $stored2 = $sutD->getOne($key2);
-        $this->assertSame($item0->bind()->title, $stored0->bind()->title);
-        $this->assertSame($item1->bind()->title, $stored1->bind()->title);
-        $this->assertInstanceOf(ItemNotFound::class, $stored2);
+        $stored0 = $sutD->find($key0);
+        $stored1 = $sutD->find($key1);
+        $stored2 = $sutD->find($key2)->orElse(static fn() => "not found");
+        $this->assertSame($item0->title, $stored0->tryUnwrap()->title);
+        $this->assertSame($item1->title, $stored1->tryUnwrap()->title);
+        $this->assertSame("not found", $stored2->tryUnwrap());
     }
 
     #[Test]
@@ -163,28 +163,28 @@ final class StorageMutabilityTest extends TestCase
     public function criterionF()
     {
         $sutA = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $key0 = new ItemKey(0);
-        $item0 = new Item(new FakeValueObject("fake1"));
+        $key0 = 0;
+        $item0 = new FakeValueObject("fake1");
         $sutA->save($key0, $item0);
-        $sutA->commit();
+        $sutA->persist();
         $sutB = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $key1 = new ItemKey(1);
-        $item1 = new Item(new FakeValueObject("fake2"));
-        $item2 = new Item(new FakeValueObject("fake3"));
-        $key2 = new ItemKey(2);
+        $key1 = 1;
+        $item1 = new FakeValueObject("fake2");
+        $item2 = new FakeValueObject("fake3");
+        $key2 = 2;
         $sutB->save($key1, $item1);
         $sutB->save($key2, $item2);
-        $sutB->commit();
+        $sutB->persist();
         $sutC = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $item2Updated = new Item(new FakeValueObject("fake3 UPDATED"));
+        $item2Updated = new FakeValueObject("fake3 UPDATED");
         $sutC->replace($key2, $item2Updated);
-        $sutC->commit();
+        $sutC->persist();
         $sutD = new CsvFileStorage($this->filename, FakeValueObject::class);
-        $stored0 = $sutD->getOne($key0);
-        $stored1 = $sutD->getOne($key1);
-        $stored2 = $sutD->getOne($key2);
-        $this->assertSame($item0->bind()->title, $stored0->bind()->title);
-        $this->assertSame($item1->bind()->title, $stored1->bind()->title);
-        $this->assertSame($item2Updated->bind()->title, $stored2->bind()->title);
+        $stored0 = $sutD->find($key0);
+        $stored1 = $sutD->find($key1);
+        $stored2 = $sutD->find($key2);
+        $this->assertSame($item0->title, $stored0->tryUnwrap()->title);
+        $this->assertSame($item1->title, $stored1->tryUnwrap()->title);
+        $this->assertSame($item2Updated->title, $stored2->tryUnwrap()->title);
     }
 }

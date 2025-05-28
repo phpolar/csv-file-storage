@@ -30,7 +30,7 @@
     },
     "require": {
         "php": "~8.3 | ~8.4",
-        "phpolar/storage": "^4.0"
+        "phpolar/storage": "^5.0"
     },
     "license": "MIT",
     "scripts": {
@@ -56,13 +56,21 @@
         "lint-fix": "phpcbf",
         "start:test": [
             "Composer\\Config::disableProcessTimeout",
-            "watch -n 30 -cx vendor/bin/phpunit --color=always --testsuite unit"
+            "watch -n 5 -cx vendor/bin/phpunit --configuration phpunit.dev.xml --color=always --testsuite unit"
         ],
         "semgrep": "semgrep --config auto -l php ./src",
         "smell": "phpmd ./src ansi design,cleancode,codesize,naming",
         "test": "phpunit --color=always",
         "test:acceptance": "@test --configuration=phpunit.dev.xml --testsuite acceptance",
-        "test:acceptance:report": "@test --configuration=phpunit.dev.xml --testsuite acceptance --testdox-text acceptance-test-results.md",
+        "test:acceptance:report": [
+            "@test:acceptance --testdox-text acceptance-test-results.md",
+            "@acceptance-report-subheadings",
+            "@acceptance-report-checkbox",
+            "@acceptance-report-title"
+        ],
+        "acceptance-report-title": "sed -i -e '1i # Acceptance Test Report\\n' acceptance-test-results.md",
+        "acceptance-report-subheadings": "sed -i -E 's/^(\\S)/## \\1/' acceptance-test-results.md",
+        "acceptance-report-checkbox": "sed -i -E 's/^ \\[/- [/' acceptance-test-results.md",
         "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
         "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --configuration=phpunit.ci.xml --coverage-text --testsuite unit\""
     }
