@@ -1,3 +1,15 @@
+## 3.0.0 (2025-05-28)
+
+### BREAKING CHANGE
+
+- Closable, Loadable, and Persistable have been moved to the Storage library.
+- The storage context now commits changes automatically. See https://github.com/phpolar/storage/releases/tag/5.0.0 for API changes.
+
+### Feat
+
+- use storage v6
+- use new storage api
+
 ## 2.0.0 (2025-05-07)
 
 ### Feat
