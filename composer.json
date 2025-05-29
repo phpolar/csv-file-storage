@@ -30,7 +30,7 @@
     },
     "require": {
         "php": "~8.3 | ~8.4",
-        "phpolar/storage": "^5.0"
+        "phpolar/storage": "^6.0"
     },
     "license": "MIT",
     "scripts": {
@@ -65,11 +65,13 @@
             "@test:acceptance --testdox-text acceptance-test-results.md",
             "@acceptance-report-subheadings",
             "@acceptance-report-checkbox",
-            "@acceptance-report-title"
+            "@acceptance-report-title",
+            "@acceptance-report-dedupe-line-endings"
         ],
         "acceptance-report-title": "sed -i -e '1i # Acceptance Test Report\\n' acceptance-test-results.md",
-        "acceptance-report-subheadings": "sed -i -E 's/^(\\S)/## \\1/' acceptance-test-results.md",
+        "acceptance-report-subheadings": "sed -i -E 's/^(\\S)(.*?)/## \\1\\2\\n/' acceptance-test-results.md",
         "acceptance-report-checkbox": "sed -i -E 's/^ \\[/- [/' acceptance-test-results.md",
+        "acceptance-report-dedupe-line-endings": "sed -i '$d' acceptance-test-results.md",
         "test:unit": "@test --configuration=phpunit.dev.xml --testsuite unit",
         "test:coverage": "XDEBUG_MODE=coverage composer exec \"@test --configuration=phpunit.ci.xml --coverage-text --testsuite unit\""
     }

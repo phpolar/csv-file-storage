@@ -21,12 +21,13 @@ final class MemoryUsageTest extends TestCase
     {
         // if it were preloaded
         include_once "src/CsvFileStorage.php";
-        include_once "src/Closable.php";
-        include_once "src/Loadable.php";
-        include_once "src/Persistable.php";
         include_once "src/CsvFileStorageLifeCycleHooks.php";
+        include_once "vendor/phpolar/storage/src/Closable.php";
+        include_once "vendor/phpolar/storage/src/Loadable.php";
+        include_once "vendor/phpolar/storage/src/Persistable.php";
+        include_once "vendor/phpolar/storage/src/InitHook.php";
+        include_once "vendor/phpolar/storage/src/DestroyHook.php";
         include_once "vendor/phpolar/storage/src/AbstractStorage.php";
-        include_once "vendor/phpolar/storage/src/LifeCycleHooks.php";
         include_once "vendor/phpolar/storage/src/Result.php";
         include_once "vendor/phpolar/storage/src/StorageContext.php";
         $totalUsed = -memory_get_usage();
