@@ -120,7 +120,7 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Countable">Countable</abbr>,                             <a href="classes/Phpolar-CsvFileStorage-Closable.html"><abbr title="\Phpolar\CsvFileStorage\Closable">Closable</abbr></a>,                             <a href="classes/Phpolar-CsvFileStorage-Loadable.html"><abbr title="\Phpolar\CsvFileStorage\Loadable">Loadable</abbr></a>,                             <a href="classes/Phpolar-CsvFileStorage-Persistable.html"><abbr title="\Phpolar\CsvFileStorage\Persistable">Persistable</abbr></a>                    </span>
+                            <abbr title="\Countable">Countable</abbr>,                             <abbr title="\Phpolar\Storage\Closable">Closable</abbr>,                             <abbr title="\Phpolar\Storage\Loadable">Loadable</abbr>,                             <abbr title="\Phpolar\Storage\Persistable">Persistable</abbr>                    </span>
     
     </h2>
 
@@ -134,7 +134,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -162,7 +162,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Countable">Countable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsvFileStorage-Closable.html"><abbr title="\Phpolar\CsvFileStorage\Closable">Closable</abbr></a></dt><dd>Provides resource closing functionality.</dd>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsvFileStorage-Loadable.html"><abbr title="\Phpolar\CsvFileStorage\Loadable">Loadable</abbr></a></dt><dd>Supports loading data from the storage context.</dd>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Phpolar-CsvFileStorage-Persistable.html"><abbr title="\Phpolar\CsvFileStorage\Persistable">Persistable</abbr></a></dt><dd>Supports persisting data into a storage context.</dd>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Countable">Countable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Phpolar\Storage\Closable">Closable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Phpolar\Storage\Loadable">Loadable</abbr></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Phpolar\Storage\Persistable">Persistable</abbr></dt>    </dl>
 
 
 
@@ -187,21 +187,18 @@
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Close resources.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_load">load()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Load data from the storage context into memory.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_persist">persist()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Persist data into a storage context.</dd>
 
     </dl>
 
@@ -231,7 +228,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -282,12 +279,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Close resources.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">close</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
@@ -317,12 +313,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">148</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Load data from the storage context into memory.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">load</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
@@ -352,12 +347,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="CsvFileStorage.php"><a href="files/csvfilestorage.html">CsvFileStorage.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Persist data into a storage context.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">persist</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>

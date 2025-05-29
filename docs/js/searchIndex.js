@@ -6,16 +6,6 @@ Search.appendIndex(
             "summary": "Represents\u0020when\u0020the\u0020type\u0020cannot\u0020be\u0020confidently\u0020selected\u0020from\u0020the\u0020specified\u0020union\u0020type",
             "url": "classes/Phpolar-CsvFileStorage-AmbiguousUnionTypeException.html"
         },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\Closable",
-            "name": "Closable",
-            "summary": "Provides\u0020resource\u0020closing\u0020functionality.",
-            "url": "classes/Phpolar-CsvFileStorage-Closable.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\Closable\u003A\u003Aclose\u0028\u0029",
-            "name": "close",
-            "summary": "Close\u0020resources.",
-            "url": "classes/Phpolar-CsvFileStorage-Closable.html#method_close"
-        },                {
             "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage",
             "name": "CsvFileStorage",
             "summary": "Allows\u0020for\u0020saving\u0020data\u0020to\u0020a\u0020CSV\u0020file.",
@@ -28,17 +18,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage\u003A\u003Aclose\u0028\u0029",
             "name": "close",
-            "summary": "Close\u0020resources.",
+            "summary": "",
             "url": "classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_close"
         },                {
             "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage\u003A\u003Apersist\u0028\u0029",
             "name": "persist",
-            "summary": "Persist\u0020data\u0020into\u0020a\u0020storage\u0020context.",
+            "summary": "",
             "url": "classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_persist"
         },                {
             "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorage\u003A\u003Aload\u0028\u0029",
             "name": "load",
-            "summary": "Load\u0020data\u0020from\u0020the\u0020storage\u0020context\u0020into\u0020memory.",
+            "summary": "",
             "url": "classes/Phpolar-CsvFileStorage-CsvFileStorage.html#method_load"
         },                {
             "fqsen": "\\Phpolar\\CsvFileStorage\\CsvFileStorageLifeCycleHooks",
@@ -70,26 +60,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/Phpolar-CsvFileStorage-FileNotExistsException.html#method___construct"
-        },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\Loadable",
-            "name": "Loadable",
-            "summary": "Supports\u0020loading\u0020data\u0020from\u0020the\u0020storage\u0020context.",
-            "url": "classes/Phpolar-CsvFileStorage-Loadable.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\Loadable\u003A\u003Aload\u0028\u0029",
-            "name": "load",
-            "summary": "Load\u0020data\u0020from\u0020the\u0020storage\u0020context\u0020into\u0020memory.",
-            "url": "classes/Phpolar-CsvFileStorage-Loadable.html#method_load"
-        },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\Persistable",
-            "name": "Persistable",
-            "summary": "Supports\u0020persisting\u0020data\u0020into\u0020a\u0020storage\u0020context.",
-            "url": "classes/Phpolar-CsvFileStorage-Persistable.html"
-        },                {
-            "fqsen": "\\Phpolar\\CsvFileStorage\\Persistable\u003A\u003Apersist\u0028\u0029",
-            "name": "persist",
-            "summary": "Persist\u0020data\u0020into\u0020a\u0020storage\u0020context.",
-            "url": "classes/Phpolar-CsvFileStorage-Persistable.html#method_persist"
         },                {
             "fqsen": "\\",
             "name": "\\",
