@@ -2,6 +2,9 @@
 
 namespace Phpolar\CsvFileStorage;
 
+use Phpolar\Storage\Closable;
+use Phpolar\Storage\Loadable;
+use Phpolar\Storage\Persistable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversClassesThatImplementInterface;
 use PHPUnit\Framework\Attributes\TestDox;

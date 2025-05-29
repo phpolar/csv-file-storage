@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d05e1981d948e061a6c6c4e8ce678d6",
+    "content-hash": "c0100202d27028c38dbfc46d15ebd3e1",
     "packages": [
         {
             "name": "phpolar/storage",
-            "version": "5.1.0",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpolar/storage.git",
-                "reference": "dbfd6b00e9c5afcdd057bd2ddca94c91dd822989"
+                "reference": "a154294e20fa82b8d8ac4855a53b9a75cad326cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpolar/storage/zipball/dbfd6b00e9c5afcdd057bd2ddca94c91dd822989",
-                "reference": "dbfd6b00e9c5afcdd057bd2ddca94c91dd822989",
+                "url": "https://api.github.com/repos/phpolar/storage/zipball/a154294e20fa82b8d8ac4855a53b9a75cad326cf",
+                "reference": "a154294e20fa82b8d8ac4855a53b9a75cad326cf",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,9 @@
             "description": "A convenient tool to speed up the creation of data storage for application development.",
             "support": {
                 "issues": "https://github.com/phpolar/storage/issues",
-                "source": "https://github.com/phpolar/storage/tree/5.1.0"
+                "source": "https://github.com/phpolar/storage/tree/6.0.0"
             },
-            "time": "2025-05-27T03:57:59+00:00"
+            "time": "2025-05-29T00:58:51+00:00"
         }
     ],
     "packages-dev": [
