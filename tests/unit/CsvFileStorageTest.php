@@ -149,6 +149,15 @@ final class CsvFileStorageTest extends TestCase
     {
         $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object.csv", FakeValueObject::class);
         $itemKey = 0;
+        $result = $sut->find($itemKey);
+        $this->assertInstanceOf(FakeValueObject::class, $result->tryUnwrap());
+    }
+
+    #[TestDox("Shall not return existing object when querying for non-existing object")]
+    public function testaaa()
+    {
+        $sut = new CsvFileStorage(__DIR__ . "/../__fakes__/object.csv", FakeValueObject::class);
+        $itemKey = 3;
         $result = $sut->find($itemKey)->orElse(static fn() => "not found");
         $this->assertSame("not found", $result->tryUnwrap());
     }
